@@ -75,15 +75,9 @@ class CardForm extends StatelessWidget {
         formControl: viewModel.formModel.teamOneScoreControl,
         keyboardType: TextInputType.number,
         textInputAction: TextInputAction.next,
-        maxLength: 3,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        textAlign: TextAlign.center,
+        style: const TextStyle(fontWeight: FontWeight.bold),
         decoration: const InputDecoration(
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          counterText: "",
-          label: Center(
-              child: Text("?",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+          label: Text("Team 1 Score"),
         ),
       );
     }
@@ -97,15 +91,9 @@ class CardForm extends StatelessWidget {
         formControl: viewModel.formModel.teamTwoScoreControl,
         keyboardType: TextInputType.number,
         textInputAction: TextInputAction.next,
-        textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        maxLength: 3,
+        style: const TextStyle(fontWeight: FontWeight.bold),
         decoration: const InputDecoration(
-          floatingLabelBehavior: FloatingLabelBehavior.never,
-          counterText: "",
-          label: Center(
-              child: Text("?",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+          label: Text("Team 2 Score"),
         ),
       );
     }
@@ -154,9 +142,21 @@ class CardForm extends StatelessWidget {
         vSpaceRegular,
         gameTitle(),
         vSpaceRegular,
-        teamOneName(),
+        Row(
+          children: [
+            Expanded(child: teamOneName()),
+            hSpaceRegular,
+            Expanded(child: teamOneScore())
+          ],
+        ),
         vSpaceRegular,
-        teamTwoName(),
+        Row(
+          children: [
+            Expanded(child: teamTwoName()),
+            hSpaceRegular,
+            Expanded(child: teamTwoScore())
+          ],
+        ),
         vSpaceRegular,
         betAmount(),
         vSpaceRegular,

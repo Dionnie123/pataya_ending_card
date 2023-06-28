@@ -1,7 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
-import 'package:pataya_ending_card/app/models/ecard.dart';
 import 'package:pataya_ending_card/app/ui/_core/sliver_grid_delegate.dart';
 import 'package:pataya_ending_card/app/views/card/card_viewmodel.dart';
 import 'package:stacked/stacked.dart';
@@ -9,12 +8,8 @@ import 'package:stacked/stacked.dart';
 @RoutePage()
 class CardSlotsView extends StatelessWidget {
   final CardViewModel? viewModel;
-  final String? cardId;
-  final ECard? card;
   const CardSlotsView({
     super.key,
-    @PathParam('cardId') this.cardId,
-    this.card,
     this.viewModel,
   });
 
@@ -29,8 +24,8 @@ class CardSlotsView extends StatelessWidget {
               title: Text(viewModel.formModel.model.title.toString()),
             ),
             body: GridView.builder(
-              key: const PageStorageKey<String>('listvew126969'),
-              padding: const EdgeInsets.all(10),
+              key: const PageStorageKey<String>("Slots"),
+              padding: const EdgeInsets.all(15),
               gridDelegate:
                   const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
                       crossAxisCount: 4,

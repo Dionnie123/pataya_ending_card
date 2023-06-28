@@ -10,11 +10,11 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
-import 'package:pataya_ending_card/app/models/ecard.dart' as _i7;
+import 'package:pataya_ending_card/app/models/ecard.dart' as _i8;
 import 'package:pataya_ending_card/app/routes/app_router.dart' as _i1;
 import 'package:pataya_ending_card/app/views/card/card_slots_view.dart' as _i2;
 import 'package:pataya_ending_card/app/views/card/card_view.dart' as _i3;
-import 'package:pataya_ending_card/app/views/card/card_viewmodel.dart' as _i8;
+import 'package:pataya_ending_card/app/views/card/card_viewmodel.dart' as _i7;
 import 'package:pataya_ending_card/app/views/home/home_view.dart' as _i4;
 
 abstract class $AppRouter extends _i5.RootStackRouter {
@@ -29,29 +29,23 @@ abstract class $AppRouter extends _i5.RootStackRouter {
       );
     },
     CardSlotsRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<CardSlotsRouteArgs>(
-          orElse: () =>
-              CardSlotsRouteArgs(cardId: pathParams.optString('cardId')));
+          orElse: () => const CardSlotsRouteArgs());
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.CardSlotsView(
           key: args.key,
-          cardId: args.cardId,
-          card: args.card,
           viewModel: args.viewModel,
         ),
       );
     },
     CardRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<CardRouteArgs>(
-          orElse: () => CardRouteArgs(cardId: pathParams.optString('cardId')));
+      final args =
+          routeData.argsAs<CardRouteArgs>(orElse: () => const CardRouteArgs());
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i3.CardView(
           key: args.key,
-          cardId: args.cardId,
           card: args.card,
           action: args.action,
         ),
@@ -85,19 +79,14 @@ class CardShellRoute extends _i5.PageRouteInfo<void> {
 class CardSlotsRoute extends _i5.PageRouteInfo<CardSlotsRouteArgs> {
   CardSlotsRoute({
     _i6.Key? key,
-    String? cardId,
-    _i7.ECard? card,
-    _i8.CardViewModel? viewModel,
+    _i7.CardViewModel? viewModel,
     List<_i5.PageRouteInfo>? children,
   }) : super(
           CardSlotsRoute.name,
           args: CardSlotsRouteArgs(
             key: key,
-            cardId: cardId,
-            card: card,
             viewModel: viewModel,
           ),
-          rawPathParams: {'cardId': cardId},
           initialChildren: children,
         );
 
@@ -110,22 +99,16 @@ class CardSlotsRoute extends _i5.PageRouteInfo<CardSlotsRouteArgs> {
 class CardSlotsRouteArgs {
   const CardSlotsRouteArgs({
     this.key,
-    this.cardId,
-    this.card,
     this.viewModel,
   });
 
   final _i6.Key? key;
 
-  final String? cardId;
-
-  final _i7.ECard? card;
-
-  final _i8.CardViewModel? viewModel;
+  final _i7.CardViewModel? viewModel;
 
   @override
   String toString() {
-    return 'CardSlotsRouteArgs{key: $key, cardId: $cardId, card: $card, viewModel: $viewModel}';
+    return 'CardSlotsRouteArgs{key: $key, viewModel: $viewModel}';
   }
 }
 
@@ -134,19 +117,16 @@ class CardSlotsRouteArgs {
 class CardRoute extends _i5.PageRouteInfo<CardRouteArgs> {
   CardRoute({
     _i6.Key? key,
-    String? cardId,
-    _i7.ECard? card,
-    _i8.ActionType? action,
+    _i8.ECard? card,
+    _i7.ActionType? action,
     List<_i5.PageRouteInfo>? children,
   }) : super(
           CardRoute.name,
           args: CardRouteArgs(
             key: key,
-            cardId: cardId,
             card: card,
             action: action,
           ),
-          rawPathParams: {'cardId': cardId},
           initialChildren: children,
         );
 
@@ -159,22 +139,19 @@ class CardRoute extends _i5.PageRouteInfo<CardRouteArgs> {
 class CardRouteArgs {
   const CardRouteArgs({
     this.key,
-    this.cardId,
     this.card,
     this.action,
   });
 
   final _i6.Key? key;
 
-  final String? cardId;
+  final _i8.ECard? card;
 
-  final _i7.ECard? card;
-
-  final _i8.ActionType? action;
+  final _i7.ActionType? action;
 
   @override
   String toString() {
-    return 'CardRouteArgs{key: $key, cardId: $cardId, card: $card, action: $action}';
+    return 'CardRouteArgs{key: $key, card: $card, action: $action}';
   }
 }
 

@@ -17,7 +17,6 @@ import 'routes/app_router.dart';
 import 'services/_core/ecard_service.dart';
 import 'services/_core/local_storage_service.dart';
 import 'ui/dialogs/slot_dialog_viewmodel.dart';
-import 'views/card/card_slots_viewmodel.dart';
 import 'views/card/card_viewmodel.dart';
 import 'views/home/home_viewmodel.dart';
 import 'views/settings/settings_view_model.dart';
@@ -48,6 +47,5 @@ Future<void> setupLocator({
   locator.registerSingleton(HomeViewModel());
   locator.registerSingleton(SettingsViewModel());
   locator.registerSingleton(CardViewModel());
-  locator.registerSingleton(CardSlotsViewModel());
   locator.registerSingleton(SlotDialogViewModel());
 }

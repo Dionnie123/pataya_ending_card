@@ -53,7 +53,7 @@ class HomeViewModel extends ReactiveViewModel {
 
   update(ECard card) {
     locator<AppRouter>().push(
-      CardRoute(cardId: card.id, card: card, action: ActionType.update),
+      CardRoute(card: card, action: ActionType.update),
     );
   }
 

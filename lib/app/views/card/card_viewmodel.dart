@@ -115,8 +115,8 @@ class CardViewModel extends ReactiveViewModel {
         .then((value) {
       if (value?.data is Slot) {
         formModel.addSlotListItem(value?.data);
+        updateCard();
         mapSlot();
-        notifyListeners();
       }
     });
   }
@@ -127,8 +127,7 @@ class CardViewModel extends ReactiveViewModel {
   }
 
   updateCard() async {
-    await runBusyFuture(_eCardService.update(_formModel.model))
-        .then((value) => navigationService.pop());
+    await runBusyFuture(_eCardService.update(_formModel.model));
   }
 
   updateSlot() {

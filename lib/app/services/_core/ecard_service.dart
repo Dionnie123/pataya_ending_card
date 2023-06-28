@@ -1,6 +1,6 @@
-import 'package:collection/collection.dart';
 import 'package:hive/hive.dart';
 import 'package:pataya_ending_card/app/models/ecard.dart';
+import 'package:pataya_ending_card/app/models/slot.dart';
 import 'package:stacked/stacked.dart';
 import 'package:uuid/uuid.dart';
 
@@ -9,6 +9,7 @@ class ECardService with ListenableServiceMixin {
   static late Box _box;
   static Future<ECardService> getInstance() async {
     Hive.registerAdapter<ECard>(ECardAdapter());
+    Hive.registerAdapter<Slot>(SlotAdapter());
     _box = await Hive.openBox<ECard>("cards");
 
     _instance ??= ECardService();
