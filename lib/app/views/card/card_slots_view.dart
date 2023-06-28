@@ -21,10 +21,10 @@ class CardSlotsView extends StatelessWidget {
         builder: (context, viewModel, child) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(viewModel.formModel.model.title.toString()),
+              title: const Text("Slots"),
             ),
             body: GridView.builder(
-              key: const PageStorageKey<String>("Slots"),
+              key: const PageStorageKey<String>('@#@#'),
               padding: const EdgeInsets.all(15),
               gridDelegate:
                   const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
