@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pataya_ending_card/app/constants/colors.dart';
 import 'package:pataya_ending_card/app/ui/_core/ez_button.dart';
 import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
 import 'package:pataya_ending_card/app/views/card/card_viewmodel.dart';
@@ -163,6 +164,12 @@ class CardForm extends StatelessWidget {
         winAmount(),
         vSpaceRegular,
         remarks(),
+        vSpaceRegular,
+        EzButton.elevated(
+          title: "Save",
+          onTap: () {},
+          background: kPrimaryColor,
+        ),
         vSpaceRegular,
         EzButton.elevated(
           title: "Delete",
