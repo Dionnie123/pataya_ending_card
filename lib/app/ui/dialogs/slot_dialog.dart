@@ -41,35 +41,45 @@ class SlotDialog extends StatelessWidget {
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.next,
                       decoration: const InputDecoration(
-                        labelText: "Name",
-                        floatingLabelBehavior: FloatingLabelBehavior.never,
+                        labelText: "Bettor Name",
                       ),
                     );
                   }
 
                   Widget isPaid() {
                     return ReactiveSwitchListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0)),
                       activeColor: kPrimaryColor,
                       enableFeedback: true,
                       dense: true,
-                      title: const Text("Payment Done?"),
+                      title: const Text(
+                        "IS PAID?",
+                        style: TextStyle(fontSize: 16),
+                      ),
                       formControl: viewModel.formModel.isPaidControl,
                     );
                   }
 
                   Widget submit() {
-                    return EzButton.elevated(
-                      title: "ADD",
-                      onTap: () {
-                        completer.call(
-                          DialogResponse(
-                            data: Slot(
-                              id: viewModel.formModel.model.id,
-                              name: viewModel.formModel.model.name,
-                              isPaid: viewModel.formModel.model.isPaid,
-                              createdAt: DateTime.now(),
-                            ),
-                          ),
+                    return ReactiveFormConsumer(
+                      builder: (context, formGroup, child) {
+                        return EzButton.elevated(
+                          disabled:
+                              viewModel.formModel.model.name?.isEmpty ?? true,
+                          title: "BET",
+                          onTap: () {
+                            completer.call(
+                              DialogResponse(
+                                data: Slot(
+                                  id: viewModel.formModel.model.id,
+                                  name: viewModel.formModel.model.name,
+                                  isPaid: viewModel.formModel.model.isPaid,
+                                  createdAt: DateTime.now(),
+                                ),
+                              ),
+                            );
+                          },
                         );
                       },
                     );
@@ -93,23 +103,30 @@ class SlotDialog extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-                                  Center(
-                                    child: Hero(
-                                      tag: "${viewModel.formModel.model.id}",
-                                      child: Text(
-                                        "${viewModel.formModel.model.id}",
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
+                                  Row(
+                                    children: [
+                                      Card(
+                                        margin: EdgeInsets.zero,
+                                        color: kPrimaryColor,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Text(
+                                            "${viewModel.formModel.model.id}",
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white),
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                      hSpaceSmall,
+                                      Expanded(child: isPaid()),
+                                    ],
                                   ),
-                                  vSpaceSmall,
+                                  vSpaceRegular,
                                   bettorName(),
-                                  vSpaceSmall,
-                                  isPaid(),
-                                  vSpaceSmall,
+                                  vSpaceRegular,
                                   submit(),
                                 ],
                               );

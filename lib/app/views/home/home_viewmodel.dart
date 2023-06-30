@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:pataya_ending_card/app/app.dialog_ui.dart';
+import 'package:pataya_ending_card/app/dialog_ui.dart';
 import 'package:pataya_ending_card/app/app.logger.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
 
@@ -18,7 +18,7 @@ class HomeViewModel extends ReactiveViewModel {
   final _dialogService = locator<DialogService>();
   final _bottomSheetService = locator<BottomSheetService>();
   final _eCardService = locator<ECardService>();
-  final _navigationService = locator<AppRouter>();
+  final navigationService = locator<AppRouter>();
 
   @override
   List<ListenableServiceMixin> get listenableServices => [

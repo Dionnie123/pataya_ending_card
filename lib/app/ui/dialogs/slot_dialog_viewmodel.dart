@@ -1,4 +1,4 @@
-import 'package:pataya_ending_card/app/app.dialog_ui.dart';
+import 'package:pataya_ending_card/app/dialog_ui.dart';
 import 'package:pataya_ending_card/app/app.logger.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
 
@@ -10,7 +10,6 @@ import 'package:uuid/uuid.dart';
 
 import '../../models/ecard.dart';
 import '../../models/slot.dart';
-import '../../routes/app_router.dart';
 
 enum ActionType { add, edit }
 
@@ -19,7 +18,6 @@ class SlotDialogViewModel extends ReactiveViewModel {
   final log = getLogger('SlotDialogViewModel');
 
   final _dialogService = locator<DialogService>();
-  final _navigationService = locator<AppRouter>();
 
   Slot? model;
   late SlotForm _formModel;

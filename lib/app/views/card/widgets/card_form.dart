@@ -132,8 +132,8 @@ class CardForm extends StatelessWidget {
         minLines: 3,
         maxLines: 5,
         decoration: const InputDecoration(
-            label: Text("Remarks"),
-            floatingLabelBehavior: FloatingLabelBehavior.always),
+          label: Text("Remarks"),
+        ),
       );
     }
 
@@ -143,21 +143,9 @@ class CardForm extends StatelessWidget {
         vSpaceRegular,
         gameTitle(),
         vSpaceRegular,
-        Row(
-          children: [
-            Expanded(child: teamOneName()),
-            hSpaceRegular,
-            Expanded(child: teamOneScore())
-          ],
-        ),
+        teamOneName(),
         vSpaceRegular,
-        Row(
-          children: [
-            Expanded(child: teamTwoName()),
-            hSpaceRegular,
-            Expanded(child: teamTwoScore())
-          ],
-        ),
+        teamTwoName(),
         vSpaceRegular,
         betAmount(),
         vSpaceRegular,
@@ -167,15 +155,23 @@ class CardForm extends StatelessWidget {
         vSpaceRegular,
         EzButton.elevated(
           title: "Save",
-          onTap: () {},
+          onTap: () async {
+            if (viewModel.action == ActionType.add) {
+              await viewModel.addCard();
+            }
+            if (viewModel.action == ActionType.update) {
+              await viewModel.updateCard();
+            }
+          },
           background: kPrimaryColor,
         ),
         vSpaceRegular,
-        EzButton.elevated(
-          title: "Delete",
-          onTap: () {},
-          background: Colors.red,
-        )
+        if (viewModel.isUpdateMode())
+          EzButton.elevated(
+            title: "Delete",
+            onTap: () {},
+            background: Colors.red,
+          )
       ],
     );
   }

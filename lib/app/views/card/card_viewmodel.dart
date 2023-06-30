@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'package:collection/collection.dart';
-import 'package:pataya_ending_card/app/app.dialog_ui.dart';
+import 'package:pataya_ending_card/app/dialog_ui.dart';
 import 'package:pataya_ending_card/app/app.logger.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
 
 import 'package:flutter/material.dart';
-import 'package:pataya_ending_card/app/routes/app_router.gr.dart';
 import 'package:pataya_ending_card/app/services/_core/ecard_service.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:stacked/stacked.dart';
@@ -34,7 +33,16 @@ class CardViewModel extends ReactiveViewModel {
 
   ActionType? action = ActionType.add;
 
+  isAddMode() {
+    return action == ActionType.add;
+  }
+
+  isUpdateMode() {
+    return action == ActionType.update;
+  }
+
   initForm(ECard? e, {required ActionType? actionType}) async {
+    model = e;
     action = actionType;
     final el = ECardForm.formElements(e);
     _formModel = ECardForm(el, null);
@@ -112,26 +120,31 @@ class CardViewModel extends ReactiveViewModel {
       barrierDismissible: true,
       data: slot,
     )
-        .then((value) {
+        .then((value) async {
       if (value?.data is Slot) {
-        formModel.addSlotListItem(value?.data);
-        updateCard();
+        final Slot slot = value?.data;
+        final a = formModel.model.slotList
+            .indexWhere((e) => e.id == slot.id && e.name == slot.name);
+        if (a != -1) {
+          formModel.removeSlotListItemAtIndex(a);
+          formModel.addSlotListItem(slot);
+        } else {
+          formModel.addSlotListItem(slot);
+        }
+
+        await updateCard();
         mapSlot();
       }
     });
   }
 
   addCard() async {
-    await runBusyFuture(_eCardService.create(_formModel.model))
+    await runBusyFuture(_eCardService.create(formModel.model))
         .then((value) => navigationService.pop());
   }
 
   updateCard() async {
-    await runBusyFuture(_eCardService.update(_formModel.model));
-  }
-
-  updateSlot() {
-    navigationService.push(CardSlotsRoute());
+    await runBusyFuture(_eCardService.update(formModel.model));
   }
 
   Future<DialogResponse<dynamic>?> confirmExit() async {

@@ -19,7 +19,7 @@ class SlotCell extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         elevation: 0,
         shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.white.withOpacity(0.6), width: 0.5),
+            side: const BorderSide(color: Colors.grey, width: 1),
             borderRadius: BorderRadius.circular(4.0)),
         margin: EdgeInsets.zero,
         child: Container(
@@ -28,8 +28,8 @@ class SlotCell extends StatelessWidget {
           decoration: BoxDecoration(
             color: slot.name != null
                 ? slot.isPaid ?? false
-                    ? Colors.blue
-                    : Colors.blueGrey
+                    ? Colors.blue.withOpacity(0.6)
+                    : Colors.blueGrey.withOpacity(0.6)
                 : null,
             gradient: slot.isWinner ?? false
                 ? const LinearGradient(
@@ -44,7 +44,7 @@ class SlotCell extends StatelessWidget {
                 : null,
           ),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(5, 3, 0, 0),
+            padding: const EdgeInsets.fromLTRB(5, 3, 5, 3),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,

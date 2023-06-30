@@ -1,4 +1,3 @@
-import 'package:pataya_ending_card/app/extensions/color_extension.dart';
 import 'package:flutter/material.dart';
 
 class EzButton extends StatelessWidget {
@@ -136,8 +135,8 @@ class EzButton extends StatelessWidget {
 
     return ConstrainedBox(
       constraints: const BoxConstraints(
-        minHeight: 38, //48,
-        maxHeight: 38, //48,
+        minHeight: 44,
+        maxHeight: 44,
         minWidth: 120,
         maxWidth: double.infinity,
       ),

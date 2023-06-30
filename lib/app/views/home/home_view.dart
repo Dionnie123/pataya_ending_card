@@ -1,6 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/routes/app_router.gr.dart';
+import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
+import 'package:pataya_ending_card/app/views/card/card_slots_view.dart';
 import 'package:pataya_ending_card/app/views/card/card_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
@@ -71,52 +73,78 @@ class _HomeViewState extends State<HomeView>
                     itemBuilder: (context, index) {
                       final item = viewModel.cards[index];
                       return Dismissible(
-                        key: UniqueKey(),
-                        background: Container(
-                          padding: const EdgeInsets.all(10),
-                          color: Colors.green,
-                          child: const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Icon(
-                              Icons.archive,
-                              color: Colors.white,
+                          key: UniqueKey(),
+                          background: Container(
+                            padding: const EdgeInsets.all(10),
+                            color: Colors.green,
+                            child: const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Icon(
+                                Icons.archive,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
-                        secondaryBackground: Container(
-                          padding: const EdgeInsets.all(10),
-                          color: Colors.red,
-                          child: const Align(
-                            alignment: Alignment.centerRight,
-                            child: Icon(
-                              Icons.delete,
-                              color: Colors.white,
+                          secondaryBackground: Container(
+                            padding: const EdgeInsets.all(10),
+                            color: Colors.red,
+                            child: const Align(
+                              alignment: Alignment.centerRight,
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
-                        onDismissed: (direction) async {
-                          if (direction == DismissDirection.endToStart) {
-                            await viewModel.deleteCard(item.id.toString());
-                            /*  ScaffoldMessenger.of(context).showSnackBar(
+                          onDismissed: (direction) async {
+                            if (direction == DismissDirection.endToStart) {
+                              await viewModel.deleteCard(item.id.toString());
+                              /*  ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('Deleted $item')),
                             ); */
-                          } else {
-                            /*  ScaffoldMessenger.of(context).showSnackBar(
+                            } else {
+                              /*  ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('Archived $item')),
                             ); */
-                          }
-                        },
-                        child: Card(
-                          margin: EdgeInsets.zero,
-                          child: ListTile(
-                            onTap: () {
-                              viewModel.update(item);
-                            },
-                            title: Text(
-                                "${item.title.toString()} ${item.id.toString()}"),
-                          ),
-                        ),
-                      );
+                            }
+                          },
+                          child: Card(
+                            child: InkWell(
+                              onTap: () {
+                                viewModel.navigationService
+                                    .pushWidget(CardSlotsView(
+                                  card: item,
+                                ));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    const Column(
+                                      children: [
+                                        Text("24/99"),
+                                        vSpaceTiny,
+                                        Icon(
+                                          Icons.star_rounded,
+                                          color: Colors.orange,
+                                        ),
+                                      ],
+                                    ),
+                                    hSpaceRegular,
+                                    Expanded(
+                                        child: Column(
+                                      children: [
+                                        Text("${item.title ?? "???"} "),
+                                        Text("${item.id ?? "???"} "),
+                                      ],
+                                    )),
+                                    Text(
+                                        "${item.teamOneScore ?? ""} - ${item.teamTwoScore ?? ""}"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ));
                     },
                   );
                 },

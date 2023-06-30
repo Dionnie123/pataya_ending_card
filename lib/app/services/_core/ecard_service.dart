@@ -28,6 +28,7 @@ class ECardService with ListenableServiceMixin {
   List<ECard> get cards => _ecards.value;
 
   Future getAll() async {
+    //_box.clear();
     _ecards.value = _box.values.toList().cast<ECard>();
 
     notifyListeners();
@@ -46,7 +47,14 @@ class ECardService with ListenableServiceMixin {
     final dateCreated = DateTime.now();
     final index = _ecards.value.indexWhere((e) => e.id == card.id);
     _ecards.value[index] = card.copyWith(createdAt: dateCreated);
-    await _box.put(card.id, card.copyWith(updatedAt: dateCreated));
+
+    int i = _box.values
+        .toList()
+        .cast<ECard>()
+        .lastIndexWhere((e) => e.id == card.id);
+
+    await _box.putAt(i, card.copyWith(updatedAt: dateCreated));
+
     notifyListeners();
   }
 

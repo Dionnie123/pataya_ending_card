@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
 import 'package:pataya_ending_card/app/constants/dimensions.dart';
 import 'package:pataya_ending_card/app/models/ecard.dart';
-import 'package:pataya_ending_card/app/views/card/card_slots_view.dart';
 import 'package:pataya_ending_card/app/views/card/widgets/card_form.dart';
 import 'package:stacked/stacked.dart';
 import 'card_viewmodel.dart';
@@ -35,8 +34,8 @@ class CardView extends StatelessWidget {
                         return Text(
                             "${viewModel.formModel.model.teamOneName} Vs.${viewModel.formModel.model.teamTwoName}");
                       }),
-                actions: [
-                  IconButton(
+                actions: const [
+                  /*        IconButton(
                       onPressed: () {
                         viewModel.navigationService.pushWidget(CardSlotsView(
                           viewModel: viewModel,
@@ -46,7 +45,7 @@ class CardView extends StatelessWidget {
                   IconButton(
                       onPressed: () {}, icon: const Icon(Icons.share_rounded)),
                   IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.settings)),
+                      onPressed: () {}, icon: const Icon(Icons.settings)), 
                   IconButton(
                       onPressed: () async {
                         if (viewModel.action == ActionType.add) {
@@ -56,7 +55,7 @@ class CardView extends StatelessWidget {
                           await viewModel.updateCard();
                         }
                       },
-                      icon: const Icon(Icons.save_rounded))
+                      icon: const Icon(Icons.save_rounded))*/
                 ],
               ),
               /*            bottomNavigationBar: widget.action == ActionType.add

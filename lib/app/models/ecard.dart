@@ -19,7 +19,7 @@ class ECard with _$ECard {
     @HiveField(2) @FormControlAnnotation<String>() String? title,
     @HiveField(3)
     @FormControlAnnotation<String>(validators: [])
-        String? teamOneName,
+    String? teamOneName,
     @HiveField(4) @FormControlAnnotation<String>() String? teamTwoName,
     @HiveField(5) @FormControlAnnotation<int>() int? teamOneScore,
     @HiveField(6) @FormControlAnnotation<int>() int? teamTwoScore,

@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:pataya_ending_card/app/app.bottomsheet_ui.dart';
-import 'package:pataya_ending_card/app/app.dialog_ui.dart';
+import 'package:pataya_ending_card/app/bottomsheet_ui.dart';
+import 'package:pataya_ending_card/app/dialog_ui.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
-import 'package:pataya_ending_card/app/app.snackbar_ui.dart';
+import 'package:pataya_ending_card/app/snackbar_ui.dart';
 import 'package:pataya_ending_card/app/routes/app_router.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorSchemeSeed: kPrimaryColor,
         // useMaterial3: true,
-        brightness: Brightness.dark,
+        // brightness: Brightness.dark,
         bottomSheetTheme: const BottomSheetThemeData(
             elevation: 0, backgroundColor: Colors.transparent),
         elevatedButtonTheme: ElevatedButtonThemeData(
