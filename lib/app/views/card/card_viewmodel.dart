@@ -123,8 +123,7 @@ class CardViewModel extends ReactiveViewModel {
         .then((value) async {
       if (value?.data is Slot) {
         final Slot slot = value?.data;
-        final a = formModel.model.slotList
-            .indexWhere((e) => e.id == slot.id && e.name == slot.name);
+        final a = formModel.model.slotList.indexWhere((e) => e.id == slot.id);
         if (a != -1) {
           formModel.removeSlotListItemAtIndex(a);
           formModel.addSlotListItem(slot);
