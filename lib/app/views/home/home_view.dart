@@ -1,9 +1,9 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/routes/app_router.gr.dart';
 import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
-import 'package:pataya_ending_card/app/views/card/card_slots_view.dart';
-import 'package:pataya_ending_card/app/views/card/card_viewmodel.dart';
+import 'package:pataya_ending_card/app/views/slots/card_slots_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
 import 'package:pataya_ending_card/app/views/home/home_viewmodel.dart';

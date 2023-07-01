@@ -1,3 +1,4 @@
+import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/dialog_ui.dart';
 import 'package:pataya_ending_card/app/app.logger.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
@@ -11,8 +12,6 @@ import 'package:uuid/uuid.dart';
 import '../../models/ecard.dart';
 import '../../models/slot.dart';
 
-enum ActionType { add, edit }
-
 class SlotDialogViewModel extends ReactiveViewModel {
   final uuid = const Uuid();
   final log = getLogger('SlotDialogViewModel');
@@ -23,7 +22,11 @@ class SlotDialogViewModel extends ReactiveViewModel {
   late SlotForm _formModel;
   SlotForm get formModel => _formModel;
 
-  initForm(Slot? e) async {
+  ActionType? action = ActionType.add;
+
+  initForm(Slot? e, {required ActionType? actionType}) async {
+    model = e;
+    action = actionType;
     final el = SlotForm.formElements(e);
     _formModel = SlotForm(el, null);
     _formModel.form.setValidators(el.validators);
@@ -32,6 +35,11 @@ class SlotDialogViewModel extends ReactiveViewModel {
       _formModel.form.markAsDisabled();
     }
     _formModel.form.addAll(el.controls);
+
+    if (_formModel.isPaidControl?.value == false &&
+        _formModel.nameControl?.value == null) {
+      _formModel.isPaidControl?.value = true;
+    }
   }
 
   @override

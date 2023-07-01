@@ -1,3 +1,4 @@
+import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/constants/colors.dart';
 import 'package:pataya_ending_card/app/helper/screen_size.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,8 @@ class SlotDialog extends StatelessWidget {
     return ViewModelBuilder<SlotDialogViewModel>.reactive(
         viewModelBuilder: () => locator<SlotDialogViewModel>(),
         onViewModelReady: (viewModel) {
-          viewModel.initForm(request.data);
+          viewModel.initForm(request.data['slot'],
+              actionType: request.data['action']);
         },
         disposeViewModel: false,
         builder: (context, viewModel, child) {
@@ -33,9 +35,30 @@ class SlotDialog extends StatelessWidget {
             child: ReactiveFormBuilder(
                 form: () => viewModel.formModel.form,
                 builder: (context, form, child) {
+                  Widget slotId() {
+                    return Container(
+                      decoration: BoxDecoration(
+                          color: kPrimaryColor,
+                          borderRadius: BorderRadius.circular(10.0)),
+                      margin: EdgeInsets.zero,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          "${viewModel.formModel.model.id}",
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
+                    );
+                  }
+
                   Widget bettorName() {
                     return ReactiveTextField(
-                      autofocus: true,
+                      autofocus:
+                          viewModel.action == ActionType.add ? true : false,
                       formControl: viewModel.formModel.nameControl,
                       showErrors: (control) => false,
                       keyboardType: TextInputType.text,
@@ -48,13 +71,15 @@ class SlotDialog extends StatelessWidget {
 
                   Widget isPaid() {
                     return ReactiveSwitchListTile(
+                      contentPadding: const EdgeInsets.only(left: 10),
+                      visualDensity: VisualDensity.compact,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0)),
                       activeColor: kPrimaryColor,
                       enableFeedback: true,
                       dense: true,
                       title: const Text(
-                        "IS PAID?",
+                        "PAID",
                         style: TextStyle(fontSize: 16),
                       ),
                       formControl: viewModel.formModel.isPaidControl,
@@ -64,22 +89,54 @@ class SlotDialog extends StatelessWidget {
                   Widget submit() {
                     return ReactiveFormConsumer(
                       builder: (context, formGroup, child) {
-                        return EzButton.elevated(
-                          disabled:
-                              viewModel.formModel.model.name?.isEmpty ?? true,
-                          title: "BET",
-                          onTap: () {
-                            completer.call(
-                              DialogResponse(
-                                data: Slot(
-                                  id: viewModel.formModel.model.id,
-                                  name: viewModel.formModel.model.name,
-                                  isPaid: viewModel.formModel.model.isPaid,
-                                  createdAt: DateTime.now(),
-                                ),
-                              ),
-                            );
-                          },
+                        return Column(
+                          children: [
+                            viewModel.action == ActionType.add
+                                ? EzButton.elevated(
+                                    disabled:
+                                        (viewModel.action == ActionType.add &&
+                                            "${viewModel.formModel.model.name}"
+                                                .isEmpty),
+                                    title: "BET",
+                                    onTap: () {
+                                      completer.call(
+                                        DialogResponse(
+                                          data: Slot(
+                                            id: viewModel.formModel.model.id,
+                                            name:
+                                                viewModel.formModel.model.name,
+                                            isPaid: viewModel
+                                                .formModel.model.isPaid,
+                                            createdAt: DateTime.now(),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  )
+                                : EzButton.elevated(
+                                    disabled:
+                                        (viewModel.formModel.form.pristine ==
+                                                true ||
+                                            "${viewModel.formModel.model.name}"
+                                                .isEmpty),
+                                    title: "UPDATE",
+                                    onTap: () {
+                                      completer.call(
+                                        DialogResponse(
+                                          data: Slot(
+                                            id: viewModel.formModel.model.id,
+                                            name:
+                                                viewModel.formModel.model.name,
+                                            isPaid: viewModel
+                                                .formModel.model.isPaid,
+                                            createdAt: DateTime.now(),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                            vSpaceSmall,
+                          ],
                         );
                       },
                     );
@@ -105,23 +162,14 @@ class SlotDialog extends StatelessWidget {
                                 children: <Widget>[
                                   Row(
                                     children: [
-                                      Card(
-                                        margin: EdgeInsets.zero,
-                                        color: kPrimaryColor,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
-                                          child: Text(
-                                            "${viewModel.formModel.model.id}",
-                                            textAlign: TextAlign.center,
-                                            style: const TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                      hSpaceSmall,
+                                      slotId(),
+                                      hSpaceRegular,
                                       Expanded(child: isPaid()),
+                                      hSpaceRegular,
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                              Icons.delete_forever_rounded))
                                     ],
                                   ),
                                   vSpaceRegular,

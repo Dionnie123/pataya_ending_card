@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/dialog_ui.dart';
 import 'package:pataya_ending_card/app/app.logger.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
@@ -8,7 +9,6 @@ import 'package:pataya_ending_card/app/models/ecard.dart';
 import 'package:pataya_ending_card/app/routes/app_router.dart';
 import 'package:pataya_ending_card/app/routes/app_router.gr.dart';
 import 'package:pataya_ending_card/app/services/_core/ecard_service.dart';
-import 'package:pataya_ending_card/app/views/card/card_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
+import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/constants/dimensions.dart';
 import 'package:pataya_ending_card/app/models/ecard.dart';
 import 'package:pataya_ending_card/app/views/card/widgets/card_form.dart';
@@ -20,6 +21,7 @@ class CardView extends StatelessWidget {
         onViewModelReady: (viewModel) {
           viewModel.initForm(card, actionType: action);
         },
+        createNewViewModelOnInsert: true,
         disposeViewModel: false,
         builder: (context, viewModel, child) {
           return ReactiveECardForm(
@@ -28,11 +30,10 @@ class CardView extends StatelessWidget {
             child: Scaffold(
               //  resizeToAvoidBottomInset: false,
               appBar: AppBar(
-                title: viewModel.action == ActionType.add
+                title: viewModel.isAddMode()
                     ? const Text("Add Card")
                     : ReactiveECardFormConsumer(builder: (context, e, child) {
-                        return Text(
-                            "${viewModel.formModel.model.teamOneName} Vs.${viewModel.formModel.model.teamTwoName}");
+                        return Text("${viewModel.formModel.model.title}");
                       }),
                 actions: const [
                   /*        IconButton(

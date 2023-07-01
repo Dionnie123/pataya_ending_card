@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/constants/colors.dart';
 import 'package:pataya_ending_card/app/ui/_core/ez_button.dart';
 import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
@@ -153,18 +154,23 @@ class CardForm extends StatelessWidget {
         vSpaceRegular,
         remarks(),
         vSpaceRegular,
-        EzButton.elevated(
-          title: "Save",
-          onTap: () async {
-            if (viewModel.action == ActionType.add) {
-              await viewModel.addCard();
-            }
-            if (viewModel.action == ActionType.update) {
+        if (viewModel.action == ActionType.add)
+          EzButton.elevated(
+            title: "Save",
+            onTap: () async {
+              await viewModel.createCard();
+            },
+            background: kPrimaryColor,
+          ),
+        if (viewModel.action == ActionType.update)
+          EzButton.elevated(
+            disabled: viewModel.formModel.form.pristine == true,
+            title: "Update",
+            onTap: () async {
               await viewModel.updateCard();
-            }
-          },
-          background: kPrimaryColor,
-        ),
+              viewModel.navigationService.pop(viewModel.formModel.model);
+            },
+          ),
         vSpaceRegular,
         if (viewModel.isUpdateMode())
           EzButton.elevated(

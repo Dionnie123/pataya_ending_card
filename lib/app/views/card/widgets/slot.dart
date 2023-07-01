@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pataya_ending_card/app/constants/colors.dart';
 
 import '../../../models/slot.dart';
 
 class SlotCell extends StatelessWidget {
+  final bool isSelected;
   final Slot slot;
   final Function(Slot slot) onTap;
-  const SlotCell(this.slot, {super.key, required this.onTap});
+  const SlotCell(this.slot,
+      {super.key, required this.onTap, this.isSelected = false});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,9 @@ class SlotCell extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         elevation: 0,
         shape: RoundedRectangleBorder(
-            side: const BorderSide(color: Colors.grey, width: 1),
+            side: BorderSide(
+                color: isSelected ? kPrimaryColor : Colors.grey,
+                width: isSelected ? 2 : 1),
             borderRadius: BorderRadius.circular(4.0)),
         margin: EdgeInsets.zero,
         child: Container(
@@ -28,7 +33,7 @@ class SlotCell extends StatelessWidget {
           decoration: BoxDecoration(
             color: slot.name != null
                 ? slot.isPaid ?? false
-                    ? Colors.blue.withOpacity(0.6)
+                    ? kPrimaryColor.withOpacity(0.6)
                     : Colors.blueGrey.withOpacity(0.6)
                 : null,
             gradient: slot.isWinner ?? false
