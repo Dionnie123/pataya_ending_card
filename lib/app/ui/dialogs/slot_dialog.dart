@@ -147,7 +147,7 @@ class SlotDialog extends StatelessWidget {
                     child: SingleChildScrollView(
                       padding: const EdgeInsets.fromLTRB(15, 15, 15, 13),
                       child: Container(
-                        width: 500,
+                        width: 300,
                         constraints: BoxConstraints(
                             minHeight: 0,
                             maxHeight: screenHeight(context) * 0.7),
@@ -160,10 +160,17 @@ class SlotDialog extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
+                                  Center(
+                                    child: Text(
+                                      "SLOT ${viewModel.formModel.model.id}",
+                                      style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  vSpaceRegular,
                                   Row(
                                     children: [
-                                      slotId(),
-                                      hSpaceRegular,
                                       Expanded(child: isPaid()),
                                       hSpaceRegular,
                                       IconButton(

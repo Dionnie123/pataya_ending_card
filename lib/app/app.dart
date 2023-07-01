@@ -1,5 +1,6 @@
 import 'package:pataya_ending_card/app/routes/app_router.dart';
 import 'package:pataya_ending_card/app/services/_core/local_storage_service.dart';
+import 'package:pataya_ending_card/app/ui/dialogs/score_dialog_viewmodel.dart';
 import 'package:pataya_ending_card/app/views/home/home_viewmodel.dart';
 import 'package:pataya_ending_card/app/views/settings/settings_view_model.dart';
 import 'package:stacked/stacked_annotations.dart';
@@ -35,6 +36,7 @@ import 'views/card/card_viewmodel.dart';
     Singleton(classType: CardViewModel),
     // Singleton(classType: CardSlotsViewModel),
     Singleton(classType: SlotDialogViewModel),
+    Singleton(classType: ScoreDialogViewModel),
   ],
 )
 class App {}

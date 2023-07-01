@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pataya_ending_card/app/bottomsheet_ui.dart';
 import 'package:pataya_ending_card/app/dialog_ui.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
               // Makes all my ElevatedButton green
               backgroundColor: kPrimaryColor),
         ),
-        /*      fontFamily: GoogleFonts.poppins().fontFamily, */
+        fontFamily: GoogleFonts.poppins().fontFamily,
         inputDecorationTheme: const InputDecorationTheme(
           /* contentPadding: EdgeInsets.all(12), */
           isDense: true,

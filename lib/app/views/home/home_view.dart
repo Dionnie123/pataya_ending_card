@@ -1,6 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
+import 'package:pataya_ending_card/app/constants/dimensions.dart';
 import 'package:pataya_ending_card/app/routes/app_router.gr.dart';
 import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
 import 'package:pataya_ending_card/app/views/slots/card_slots_view.dart';
@@ -68,7 +70,11 @@ class _HomeViewState extends State<HomeView>
                     icon: Icons.sports_basketball_rounded, title: "NO CARDS"),
                 builder: (context, size) {
                   return ListView.builder(
-                    padding: const EdgeInsets.all(0),
+                    padding: Dimens.computedWidth(
+                        screenSize: size,
+                        targetWidth: 500,
+                        hPadding: 15,
+                        vPadding: 15),
                     itemCount: viewModel.cards.length,
                     itemBuilder: (context, index) {
                       final item = viewModel.cards[index];
@@ -117,10 +123,16 @@ class _HomeViewState extends State<HomeView>
                                 ));
                               },
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(10.0),
                                 child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     const Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Text("24/99"),
                                         vSpaceTiny,
@@ -133,9 +145,26 @@ class _HomeViewState extends State<HomeView>
                                     hSpaceRegular,
                                     Expanded(
                                         child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
-                                        Text("${item.title ?? "???"} "),
-                                        Text("${item.id ?? "???"} "),
+                                        Text(
+                                          "${item.teamOneName ?? ""} vs. ${item.teamTwoName ?? ""} ",
+                                          style: const TextStyle(fontSize: 16),
+                                        ),
+                                        vSpaceTiny,
+                                        Row(
+                                          children: [
+                                            Text(item.title ?? ""),
+                                            if (item.date != null)
+                                              Text(DateFormat(
+                                                      ' - EEE, MMM. d y h:mma')
+                                                  .format(item.date ??
+                                                      DateTime.now())),
+                                          ],
+                                        ),
                                       ],
                                     )),
                                     Text(

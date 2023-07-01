@@ -136,6 +136,25 @@ class CardViewModel extends ReactiveViewModel {
     });
   }
 
+  showScoreForm() {
+    _dialogService.showCustomDialog(
+        variant: DialogType.score,
+        barrierDismissible: true,
+        takesInput: true,
+        data: {
+          'card': _formModel.model,
+          'action': ActionType.update,
+        }).then((value) {
+      print(value);
+      if (value?.data is ECard) {
+        model = value?.data;
+        initForm(model);
+
+        mapSlot();
+      }
+    });
+  }
+
   showCardForm() {
     navigationService
         .push(
