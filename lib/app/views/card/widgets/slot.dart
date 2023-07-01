@@ -33,7 +33,7 @@ class SlotCell extends StatelessWidget {
           decoration: BoxDecoration(
             color: slot.name != null
                 ? slot.isPaid ?? false
-                    ? kPrimaryColor.withOpacity(0.6)
+                    ? Colors.blue.withOpacity(0.6)
                     : Colors.transparent
                 : null,
             gradient: slot.isWinner ?? false
@@ -41,7 +41,6 @@ class SlotCell extends StatelessWidget {
                     colors: [
                       Colors.orangeAccent,
                       Colors.orange,
-                      Colors.orangeAccent,
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -59,13 +58,17 @@ class SlotCell extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Hero(
-                        tag: "${slot.id}",
-                        child: Text(
-                          "${slot.id}",
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 13),
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "${slot.id}",
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 13),
+                            ),
+                          ),
+                          if (slot.isWinner ?? false) const Text("🏆")
+                        ],
                       ),
                       const SizedBox(width: 3),
                       Text(
