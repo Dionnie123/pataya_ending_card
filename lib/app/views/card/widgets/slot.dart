@@ -34,7 +34,7 @@ class SlotCell extends StatelessWidget {
             color: slot.name != null
                 ? slot.isPaid ?? false
                     ? kPrimaryColor.withOpacity(0.6)
-                    : Colors.blueGrey.withOpacity(0.6)
+                    : Colors.transparent
                 : null,
             gradient: slot.isWinner ?? false
                 ? const LinearGradient(
