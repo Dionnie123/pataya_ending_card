@@ -144,13 +144,14 @@ class CardViewModel extends ReactiveViewModel {
         data: {
           'card': _formModel.model,
           'action': ActionType.update,
-        }).then((value) {
-      print(value);
+        }).then((value) async {
       if (value?.data is ECard) {
         model = value?.data;
+        print(model);
         initForm(model);
 
         mapSlot();
+        await updateCard();
       }
     });
   }

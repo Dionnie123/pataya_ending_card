@@ -6,7 +6,6 @@
 
 // ignore_for_file: public_member_api_docs, implementation_imports, depend_on_referenced_packages
 
-import 'package:pataya_ending_card/app/ui/dialogs/score_dialog_viewmodel.dart';
 import 'package:stacked_services/src/bottom_sheet/bottom_sheet_service.dart';
 import 'package:stacked_services/src/dialog/dialog_service.dart';
 import 'package:stacked_services/src/navigation/navigation_service.dart';
@@ -17,6 +16,7 @@ import 'package:stacked_themes/src/theme_service.dart';
 import 'routes/app_router.dart';
 import 'services/_core/ecard_service.dart';
 import 'services/_core/local_storage_service.dart';
+import 'ui/dialogs/score_dialog_viewmodel.dart';
 import 'ui/dialogs/slot_dialog_viewmodel.dart';
 import 'views/card/card_viewmodel.dart';
 import 'views/home/home_viewmodel.dart';

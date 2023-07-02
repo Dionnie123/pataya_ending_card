@@ -52,7 +52,7 @@ class CardSlotsView extends StatelessWidget {
                 padding: Dimens.computedWidth(
                     screenSize: size,
                     targetWidth: 500,
-                    hPadding: 15,
+                    hPadding: 0,
                     vPadding: 0),
                 child: GridView.builder(
                   shrinkWrap: true,

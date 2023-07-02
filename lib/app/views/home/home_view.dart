@@ -73,8 +73,8 @@ class _HomeViewState extends State<HomeView>
                     padding: Dimens.computedWidth(
                         screenSize: size,
                         targetWidth: 500,
-                        hPadding: 15,
-                        vPadding: 15),
+                        hPadding: 0,
+                        vPadding: 0),
                     itemCount: viewModel.cards.length,
                     itemBuilder: (context, index) {
                       final item = viewModel.cards[index];
@@ -128,21 +128,6 @@ class _HomeViewState extends State<HomeView>
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    const Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Text("24/99"),
-                                        vSpaceTiny,
-                                        Icon(
-                                          Icons.star_rounded,
-                                          color: Colors.orange,
-                                        ),
-                                      ],
-                                    ),
-                                    hSpaceRegular,
                                     Expanded(
                                         child: Column(
                                       crossAxisAlignment:
@@ -152,23 +137,28 @@ class _HomeViewState extends State<HomeView>
                                       children: [
                                         Text(
                                           "${item.teamOneName ?? ""} vs. ${item.teamTwoName ?? ""} ",
-                                          style: const TextStyle(fontSize: 16),
                                         ),
                                         vSpaceTiny,
-                                        Row(
-                                          children: [
-                                            Text(item.title ?? ""),
-                                            if (item.date != null)
-                                              Text(DateFormat(
-                                                      ' - EEE, MMM. d y h:mma')
-                                                  .format(item.date ??
-                                                      DateTime.now())),
-                                          ],
-                                        ),
+                                        Text(item.title ?? ""),
+                                        if (item.date != null)
+                                          Text(DateFormat('EEE, MMM. d y h:mma')
+                                              .format(
+                                                  item.date ?? DateTime.now())),
                                       ],
                                     )),
-                                    Text(
-                                        "${item.teamOneScore ?? ""} - ${item.teamTwoScore ?? ""}"),
+                                    hSpaceRegular,
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                            "Score : ${item.teamOneScore ?? ""} ${item.teamTwoScore != null ? "- ${item.teamTwoScore}" : ""}"),
+                                        const Text("Slots   : 24/99"),
+                                        const Text("Paid    : 7/9"),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),

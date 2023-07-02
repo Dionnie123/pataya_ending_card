@@ -1,7 +1,0 @@
-global_options:
-  reactive_forms_generator:reactive_forms_generator:
-    runs_before:
-      - isar_generator:isar_generator
-  freezed:freezed:
-    runs_before:
-      - isar_generator:isar_generator
