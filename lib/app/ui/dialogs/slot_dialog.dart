@@ -94,9 +94,7 @@ class SlotDialog extends StatelessWidget {
                             viewModel.action == ActionType.add
                                 ? EzButton.elevated(
                                     disabled:
-                                        (viewModel.action == ActionType.add &&
-                                            "${viewModel.formModel.model.name}"
-                                                .isEmpty),
+                                        viewModel.formModel.model.name == null,
                                     title: "BET",
                                     onTap: () {
                                       completer.call(

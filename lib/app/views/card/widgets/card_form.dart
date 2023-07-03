@@ -173,7 +173,7 @@ class CardForm extends StatelessWidget {
           ),
         vSpaceRegular,
         if (viewModel.isUpdateMode())
-          EzButton.elevated(
+          EzButton.outline(
             title: "Delete",
             onTap: () {},
             background: Colors.red,
