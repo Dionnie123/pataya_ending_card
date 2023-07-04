@@ -5,7 +5,7 @@ part 'slot.freezed.dart';
 part 'slot.g.dart';
 
 @Freezed()
-@HiveType(typeId: 1, adapterName: "SlotAdapter")
+@HiveType(typeId: 2, adapterName: "SlotAdapter")
 @FormGroupAnnotation()
 class Slot with _$Slot {
   @JsonSerializable(

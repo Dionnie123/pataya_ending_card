@@ -14,6 +14,7 @@ import 'package:pataya_ending_card/app/constants/action.dart' as _i8;
 import 'package:pataya_ending_card/app/models/ecard.dart' as _i7;
 import 'package:pataya_ending_card/app/routes/app_router.dart' as _i1;
 import 'package:pataya_ending_card/app/views/card/card_view.dart' as _i2;
+import 'package:pataya_ending_card/app/views/card/card_viewmodel.dart' as _i9;
 import 'package:pataya_ending_card/app/views/home/home_view.dart' as _i3;
 import 'package:pataya_ending_card/app/views/slots/card_slots_view.dart' as _i4;
 
@@ -37,6 +38,7 @@ abstract class $AppRouter extends _i5.RootStackRouter {
           key: args.key,
           card: args.card,
           action: args.action,
+          viewModelParam: args.viewModelParam,
         ),
       );
     },
@@ -54,6 +56,7 @@ abstract class $AppRouter extends _i5.RootStackRouter {
           key: args.key,
           card: args.card,
           action: args.action,
+          viewModelParam: args.viewModelParam,
         ),
       );
     },
@@ -81,6 +84,7 @@ class CardRoute extends _i5.PageRouteInfo<CardRouteArgs> {
     _i6.Key? key,
     _i7.ECard? card,
     _i8.ActionType? action,
+    _i9.CardViewModel? viewModelParam,
     List<_i5.PageRouteInfo>? children,
   }) : super(
           CardRoute.name,
@@ -88,6 +92,7 @@ class CardRoute extends _i5.PageRouteInfo<CardRouteArgs> {
             key: key,
             card: card,
             action: action,
+            viewModelParam: viewModelParam,
           ),
           initialChildren: children,
         );
@@ -103,6 +108,7 @@ class CardRouteArgs {
     this.key,
     this.card,
     this.action,
+    this.viewModelParam,
   });
 
   final _i6.Key? key;
@@ -111,9 +117,11 @@ class CardRouteArgs {
 
   final _i8.ActionType? action;
 
+  final _i9.CardViewModel? viewModelParam;
+
   @override
   String toString() {
-    return 'CardRouteArgs{key: $key, card: $card, action: $action}';
+    return 'CardRouteArgs{key: $key, card: $card, action: $action, viewModelParam: $viewModelParam}';
   }
 }
 
@@ -138,6 +146,7 @@ class CardSlotsRoute extends _i5.PageRouteInfo<CardSlotsRouteArgs> {
     _i6.Key? key,
     required _i7.ECard? card,
     _i8.ActionType? action,
+    _i9.CardViewModel? viewModelParam,
     List<_i5.PageRouteInfo>? children,
   }) : super(
           CardSlotsRoute.name,
@@ -145,6 +154,7 @@ class CardSlotsRoute extends _i5.PageRouteInfo<CardSlotsRouteArgs> {
             key: key,
             card: card,
             action: action,
+            viewModelParam: viewModelParam,
           ),
           initialChildren: children,
         );
@@ -160,6 +170,7 @@ class CardSlotsRouteArgs {
     this.key,
     required this.card,
     this.action,
+    this.viewModelParam,
   });
 
   final _i6.Key? key;
@@ -168,8 +179,10 @@ class CardSlotsRouteArgs {
 
   final _i8.ActionType? action;
 
+  final _i9.CardViewModel? viewModelParam;
+
   @override
   String toString() {
-    return 'CardSlotsRouteArgs{key: $key, card: $card, action: $action}';
+    return 'CardSlotsRouteArgs{key: $key, card: $card, action: $action, viewModelParam: $viewModelParam}';
   }
 }

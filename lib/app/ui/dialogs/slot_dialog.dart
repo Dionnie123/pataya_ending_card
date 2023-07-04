@@ -26,6 +26,9 @@ class SlotDialog extends StatelessWidget {
           viewModel.initForm(request.data['slot'],
               actionType: request.data['action']);
         },
+        onDispose: (viewModel) {
+          viewModel.formModel.form.dispose();
+        },
         disposeViewModel: false,
         builder: (context, viewModel, child) {
           return Dialog(

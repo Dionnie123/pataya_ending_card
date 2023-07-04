@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/constants/dimensions.dart';
+import 'package:pataya_ending_card/app/dialog_ui.dart';
 import 'package:pataya_ending_card/app/models/ecard.dart';
 import 'package:pataya_ending_card/app/ui/_core/sliver_grid_delegate.dart';
 import 'package:pataya_ending_card/app/views/card/card_viewmodel.dart';
@@ -11,18 +12,22 @@ import 'package:stacked/stacked.dart';
 
 @RoutePage()
 class CardSlotsView extends StatelessWidget {
+  final CardViewModel? viewModelParam;
   final ECard? card;
   final ActionType? action;
 
-  const CardSlotsView({super.key, required this.card, this.action});
+  const CardSlotsView(
+      {super.key, required this.card, this.action, this.viewModelParam});
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CardViewModel>.reactive(
-        viewModelBuilder: () => locator<CardViewModel>(),
+        viewModelBuilder: () => viewModelParam ?? locator<CardViewModel>(),
         onViewModelReady: (viewModel) {
-          viewModel.initForm(card, actionType: action);
-          viewModel.mapSlot();
+          if (viewModelParam == null) {
+            viewModel.initForm(card, actionType: action);
+            viewModel.mapSlot();
+          }
         },
         onDispose: (viewModel) {
           viewModel.formModel.form.dispose();
@@ -37,7 +42,15 @@ class CardSlotsView extends StatelessWidget {
               actions: [
                 IconButton(
                     onPressed: () async {
-                      await viewModel.showScoreForm();
+                      viewModel.dialogService
+                          .showCustomDialog(
+                              variant: DialogType.score,
+                              barrierDismissible: true,
+                              takesInput: true,
+                              data: viewModel)
+                          .then((value) {
+                        print(value?.data);
+                      });
                     },
                     icon: const Icon(Icons.table_chart_rounded)),
                 IconButton(

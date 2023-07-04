@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorSchemeSeed: kPrimaryColor,
         // useMaterial3: true,
-        brightness: Brightness.dark,
+        // brightness: Brightness.dark,
         bottomSheetTheme: const BottomSheetThemeData(
             elevation: 0, backgroundColor: Colors.transparent),
         elevatedButtonTheme: ElevatedButtonThemeData(

@@ -10,16 +10,22 @@ import 'card_viewmodel.dart';
 
 @RoutePage()
 class CardView extends StatelessWidget {
+  final CardViewModel? viewModelParam;
   final ECard? card;
   final ActionType? action;
-  const CardView({super.key, this.card, this.action});
+  const CardView({super.key, this.card, this.action, this.viewModelParam});
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CardViewModel>.reactive(
-        viewModelBuilder: () => locator<CardViewModel>(),
+        viewModelBuilder: () => viewModelParam ?? locator<CardViewModel>(),
         onViewModelReady: (viewModel) {
-          viewModel.initForm(card, actionType: action);
+          if (viewModelParam == null) {
+            viewModel.initForm(card, actionType: action);
+          }
+        },
+        onDispose: (viewModel) {
+          viewModel.formModel.form.dispose();
         },
         createNewViewModelOnInsert: true,
         disposeViewModel: false,
@@ -35,42 +41,7 @@ class CardView extends StatelessWidget {
                     : ReactiveECardFormConsumer(builder: (context, e, child) {
                         return Text("${viewModel.formModel.model.title}");
                       }),
-                actions: const [
-                  /*        IconButton(
-                      onPressed: () {
-                        viewModel.navigationService.pushWidget(CardSlotsView(
-                          viewModel: viewModel,
-                        ));
-                      },
-                      icon: const Icon(Icons.table_chart_rounded)),
-                  IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.share_rounded)),
-                  IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.settings)), 
-                  IconButton(
-                      onPressed: () async {
-                        if (viewModel.action == ActionType.add) {
-                          await viewModel.addCard();
-                        }
-                        if (viewModel.action == ActionType.update) {
-                          await viewModel.updateCard();
-                        }
-                      },
-                      icon: const Icon(Icons.save_rounded))*/
-                ],
               ),
-              /*            bottomNavigationBar: widget.action == ActionType.add
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 15),
-                    child: EzButton.elevated(
-                      title: "SAVE",
-                      onTap: () async {
-                        await viewModel.addCard();
-                      },
-                    ),
-                  )
-                : null, */
               body: LayoutBuilder(builder: (context, size) {
                 return SingleChildScrollView(
                   padding: Dimens.computedWidth(

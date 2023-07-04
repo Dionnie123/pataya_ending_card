@@ -8,7 +8,7 @@ part of 'slot.dart';
 
 class SlotAdapter extends TypeAdapter<Slot> {
   @override
-  final int typeId = 1;
+  final int typeId = 2;
 
   @override
   Slot read(BinaryReader reader) {

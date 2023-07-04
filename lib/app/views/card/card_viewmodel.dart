@@ -28,7 +28,7 @@ class CardViewModel extends ReactiveViewModel {
     log.e(error);
     super.onFutureError(error, key);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _dialogService.showCustomDialog(
+      dialogService.showCustomDialog(
         variant: DialogType.error,
         barrierDismissible: true,
         description: error.toString(),
@@ -38,7 +38,7 @@ class CardViewModel extends ReactiveViewModel {
 
   final log = getLogger('CardViewModel');
 
-  final _dialogService = locator<DialogService>();
+  final dialogService = locator<DialogService>();
   final navigationService = locator<AppRouter>();
   final _eCardService = locator<ECardService>();
 
@@ -110,7 +110,7 @@ class CardViewModel extends ReactiveViewModel {
   manageSlot(Slot? slot, ActionType action) {
     selectedSlotId = slot?.id;
     mapSlot();
-    _dialogService.showCustomDialog(
+    dialogService.showCustomDialog(
       takesInput: true,
       variant: DialogType.slot,
       barrierDismissible: true,
@@ -137,7 +137,7 @@ class CardViewModel extends ReactiveViewModel {
   }
 
   showScoreForm() {
-    _dialogService.showCustomDialog(
+    dialogService.showCustomDialog(
         variant: DialogType.score,
         barrierDismissible: true,
         takesInput: true,
@@ -183,7 +183,7 @@ class CardViewModel extends ReactiveViewModel {
   }
 
   Future<DialogResponse<dynamic>?> confirmExit() async {
-    return await _dialogService.showCustomDialog(
+    return await dialogService.showCustomDialog(
       variant: DialogType.confirmation,
       title: "Exit App",
       description: "You sure you want to exit?",

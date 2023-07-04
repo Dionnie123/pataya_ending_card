@@ -53,32 +53,28 @@ class SlotCell extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              "${slot.id}",
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 13),
-                            ),
-                          ),
-                          if (slot.isWinner ?? false) const Text("🏆")
-                        ],
-                      ),
-                      const SizedBox(width: 3),
-                      Text(
-                        slot.name ?? '',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: const TextStyle(fontSize: 12, height: 1),
-                      )
-                    ],
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "${slot.id}",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 13),
+                        ),
+                        if (slot.isWinner ?? false) const Text("🏆")
+                      ],
+                    ),
+                    const SizedBox(width: 3),
+                    Text(
+                      slot.name ?? '',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: const TextStyle(fontSize: 12, height: 1),
+                    )
+                  ],
                 ),
               ],
             ),
