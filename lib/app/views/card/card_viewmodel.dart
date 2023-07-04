@@ -4,14 +4,12 @@ import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/dialog_ui.dart';
 import 'package:pataya_ending_card/app/app.logger.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
-
 import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/routes/app_router.gr.dart';
 import 'package:pataya_ending_card/app/services/_core/ecard_service.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-
 import '../../extensions/slot_extension.dart';
 import '../../models/ecard.dart';
 import '../../models/slot.dart';
@@ -147,7 +145,7 @@ class CardViewModel extends ReactiveViewModel {
         }).then((value) async {
       if (value?.data is ECard) {
         model = value?.data;
-        print(model);
+
         initForm(model);
 
         mapSlot();

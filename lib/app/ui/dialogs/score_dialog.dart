@@ -1,6 +1,7 @@
 import 'package:pataya_ending_card/app/helper/screen_size.dart';
 import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
+import 'package:pataya_ending_card/app/views/card/card_viewmodel.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -17,7 +18,7 @@ class ScoreDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = request.data;
+    final viewModel = request.data as CardViewModel?;
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -28,6 +29,9 @@ class ScoreDialog extends StatelessWidget {
             Widget teamOneScore() {
               return ReactiveTextField(
                 showErrors: (control) => false,
+                onChanged: (control) {
+                  viewModel?.formModel.form.markAsDirty();
+                },
                 formControl: viewModel?.formModel.teamOneScoreControl,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
@@ -42,6 +46,9 @@ class ScoreDialog extends StatelessWidget {
             Widget teamTwoScore() {
               return ReactiveTextField(
                 showErrors: (control) => false,
+                onChanged: (control) {
+                  viewModel?.formModel.form.markAsDirty();
+                },
                 formControl: viewModel?.formModel.teamTwoScoreControl,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
