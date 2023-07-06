@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/constants/dimensions.dart';
+import 'package:pataya_ending_card/app/models/ecard.dart';
 import 'package:pataya_ending_card/app/routes/app_router.gr.dart';
 import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
 import 'package:pataya_ending_card/app/views/slots/card_slots_view.dart';
@@ -57,7 +58,7 @@ class _HomeViewState extends State<HomeView>
               floatingActionButton: FloatingActionButton(
                   onPressed: () {
                     locator<AppRouter>().push(
-                      CardRoute(action: ActionType.add),
+                      CardRoute(card: ECard(), action: ActionType.add),
                     );
                   },
                   child: const Icon(Icons.add)),
@@ -121,6 +122,7 @@ class _HomeViewState extends State<HomeView>
                                 viewModel.navigationService
                                     .pushWidget(CardSlotsView(
                                   card: item,
+                                  action: ActionType.update,
                                 ));
                               },
                               child: Padding(

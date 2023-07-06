@@ -21,36 +21,36 @@ ECard _$ECardFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ECard {
   @HiveField(0)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   String? get id => throw _privateConstructorUsedError;
   @HiveField(1)
   DateTime? get date => throw _privateConstructorUsedError;
   @HiveField(2)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   String? get title => throw _privateConstructorUsedError;
   @HiveField(3)
-  @FormControlAnnotation<String>(validators: [])
+  @RfControl<String>(validators: [])
   String? get teamOneName => throw _privateConstructorUsedError;
   @HiveField(4)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   String? get teamTwoName => throw _privateConstructorUsedError;
   @HiveField(5)
-  @FormControlAnnotation<int>()
+  @RfControl<int>()
   int? get teamOneScore => throw _privateConstructorUsedError;
   @HiveField(6)
-  @FormControlAnnotation<int>()
+  @RfControl<int>()
   int? get teamTwoScore => throw _privateConstructorUsedError;
   @HiveField(7)
-  @FormControlAnnotation<double>()
+  @RfControl<double>()
   double? get betAmount => throw _privateConstructorUsedError;
   @HiveField(8)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   String? get prize => throw _privateConstructorUsedError;
   @HiveField(9)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   String? get remarks => throw _privateConstructorUsedError;
   @HiveField(10)
-  @FormArrayAnnotation()
+  @RfArray()
   List<Slot> get slotList => throw _privateConstructorUsedError;
   @HiveField(11)
   DateTime? get createdAt => throw _privateConstructorUsedError;
@@ -68,42 +68,19 @@ abstract class $ECardCopyWith<$Res> {
       _$ECardCopyWithImpl<$Res, ECard>;
   @useResult
   $Res call(
-      {@HiveField(0)
-      @FormControlAnnotation<String>()
-          String? id,
-      @HiveField(1)
-          DateTime? date,
-      @HiveField(2)
-      @FormControlAnnotation<String>()
-          String? title,
-      @HiveField(3)
-      @FormControlAnnotation<String>(validators: [])
-          String? teamOneName,
-      @HiveField(4)
-      @FormControlAnnotation<String>()
-          String? teamTwoName,
-      @HiveField(5)
-      @FormControlAnnotation<int>()
-          int? teamOneScore,
-      @HiveField(6)
-      @FormControlAnnotation<int>()
-          int? teamTwoScore,
-      @HiveField(7)
-      @FormControlAnnotation<double>()
-          double? betAmount,
-      @HiveField(8)
-      @FormControlAnnotation<String>()
-          String? prize,
-      @HiveField(9)
-      @FormControlAnnotation<String>()
-          String? remarks,
-      @HiveField(10)
-      @FormArrayAnnotation()
-          List<Slot> slotList,
-      @HiveField(11)
-          DateTime? createdAt,
-      @HiveField(12)
-          DateTime? updatedAt});
+      {@HiveField(0) @RfControl<String>() String? id,
+      @HiveField(1) DateTime? date,
+      @HiveField(2) @RfControl<String>() String? title,
+      @HiveField(3) @RfControl<String>(validators: []) String? teamOneName,
+      @HiveField(4) @RfControl<String>() String? teamTwoName,
+      @HiveField(5) @RfControl<int>() int? teamOneScore,
+      @HiveField(6) @RfControl<int>() int? teamTwoScore,
+      @HiveField(7) @RfControl<double>() double? betAmount,
+      @HiveField(8) @RfControl<String>() String? prize,
+      @HiveField(9) @RfControl<String>() String? remarks,
+      @HiveField(10) @RfArray() List<Slot> slotList,
+      @HiveField(11) DateTime? createdAt,
+      @HiveField(12) DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -197,42 +174,19 @@ abstract class _$$_ECardCopyWith<$Res> implements $ECardCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@HiveField(0)
-      @FormControlAnnotation<String>()
-          String? id,
-      @HiveField(1)
-          DateTime? date,
-      @HiveField(2)
-      @FormControlAnnotation<String>()
-          String? title,
-      @HiveField(3)
-      @FormControlAnnotation<String>(validators: [])
-          String? teamOneName,
-      @HiveField(4)
-      @FormControlAnnotation<String>()
-          String? teamTwoName,
-      @HiveField(5)
-      @FormControlAnnotation<int>()
-          int? teamOneScore,
-      @HiveField(6)
-      @FormControlAnnotation<int>()
-          int? teamTwoScore,
-      @HiveField(7)
-      @FormControlAnnotation<double>()
-          double? betAmount,
-      @HiveField(8)
-      @FormControlAnnotation<String>()
-          String? prize,
-      @HiveField(9)
-      @FormControlAnnotation<String>()
-          String? remarks,
-      @HiveField(10)
-      @FormArrayAnnotation()
-          List<Slot> slotList,
-      @HiveField(11)
-          DateTime? createdAt,
-      @HiveField(12)
-          DateTime? updatedAt});
+      {@HiveField(0) @RfControl<String>() String? id,
+      @HiveField(1) DateTime? date,
+      @HiveField(2) @RfControl<String>() String? title,
+      @HiveField(3) @RfControl<String>(validators: []) String? teamOneName,
+      @HiveField(4) @RfControl<String>() String? teamTwoName,
+      @HiveField(5) @RfControl<int>() int? teamOneScore,
+      @HiveField(6) @RfControl<int>() int? teamTwoScore,
+      @HiveField(7) @RfControl<double>() double? betAmount,
+      @HiveField(8) @RfControl<String>() String? prize,
+      @HiveField(9) @RfControl<String>() String? remarks,
+      @HiveField(10) @RfArray() List<Slot> slotList,
+      @HiveField(11) DateTime? createdAt,
+      @HiveField(12) DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -320,42 +274,19 @@ class __$$_ECardCopyWithImpl<$Res> extends _$ECardCopyWithImpl<$Res, _$_ECard>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$_ECard implements _ECard {
   _$_ECard(
-      {@HiveField(0)
-      @FormControlAnnotation<String>()
-          this.id,
-      @HiveField(1)
-          this.date,
-      @HiveField(2)
-      @FormControlAnnotation<String>()
-          this.title,
-      @HiveField(3)
-      @FormControlAnnotation<String>(validators: [])
-          this.teamOneName,
-      @HiveField(4)
-      @FormControlAnnotation<String>()
-          this.teamTwoName,
-      @HiveField(5)
-      @FormControlAnnotation<int>()
-          this.teamOneScore,
-      @HiveField(6)
-      @FormControlAnnotation<int>()
-          this.teamTwoScore,
-      @HiveField(7)
-      @FormControlAnnotation<double>()
-          this.betAmount,
-      @HiveField(8)
-      @FormControlAnnotation<String>()
-          this.prize,
-      @HiveField(9)
-      @FormControlAnnotation<String>()
-          this.remarks,
-      @HiveField(10)
-      @FormArrayAnnotation()
-          final List<Slot> slotList = const [],
-      @HiveField(11)
-          this.createdAt,
-      @HiveField(12)
-          this.updatedAt})
+      {@HiveField(0) @RfControl<String>() this.id,
+      @HiveField(1) this.date,
+      @HiveField(2) @RfControl<String>() this.title,
+      @HiveField(3) @RfControl<String>(validators: []) this.teamOneName,
+      @HiveField(4) @RfControl<String>() this.teamTwoName,
+      @HiveField(5) @RfControl<int>() this.teamOneScore,
+      @HiveField(6) @RfControl<int>() this.teamTwoScore,
+      @HiveField(7) @RfControl<double>() this.betAmount,
+      @HiveField(8) @RfControl<String>() this.prize,
+      @HiveField(9) @RfControl<String>() this.remarks,
+      @HiveField(10) @RfArray() final List<Slot> slotList = const [],
+      @HiveField(11) this.createdAt,
+      @HiveField(12) this.updatedAt})
       : _slotList = slotList;
 
   factory _$_ECard.fromJson(Map<String, dynamic> json) =>
@@ -363,48 +294,48 @@ class _$_ECard implements _ECard {
 
   @override
   @HiveField(0)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   final String? id;
   @override
   @HiveField(1)
   final DateTime? date;
   @override
   @HiveField(2)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   final String? title;
   @override
   @HiveField(3)
-  @FormControlAnnotation<String>(validators: [])
+  @RfControl<String>(validators: [])
   final String? teamOneName;
   @override
   @HiveField(4)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   final String? teamTwoName;
   @override
   @HiveField(5)
-  @FormControlAnnotation<int>()
+  @RfControl<int>()
   final int? teamOneScore;
   @override
   @HiveField(6)
-  @FormControlAnnotation<int>()
+  @RfControl<int>()
   final int? teamTwoScore;
   @override
   @HiveField(7)
-  @FormControlAnnotation<double>()
+  @RfControl<double>()
   final double? betAmount;
   @override
   @HiveField(8)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   final String? prize;
   @override
   @HiveField(9)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   final String? remarks;
   final List<Slot> _slotList;
   @override
   @JsonKey()
   @HiveField(10)
-  @FormArrayAnnotation()
+  @RfArray()
   List<Slot> get slotList {
     if (_slotList is EqualUnmodifiableListView) return _slotList;
     // ignore: implicit_dynamic_type
@@ -485,36 +416,36 @@ class _$_ECard implements _ECard {
 abstract class _ECard implements ECard {
   factory _ECard(
       {@HiveField(0)
-      @FormControlAnnotation<String>()
+      @RfControl<String>()
           final String? id,
       @HiveField(1)
           final DateTime? date,
       @HiveField(2)
-      @FormControlAnnotation<String>()
+      @RfControl<String>()
           final String? title,
       @HiveField(3)
-      @FormControlAnnotation<String>(validators: [])
+      @RfControl<String>(validators: [])
           final String? teamOneName,
       @HiveField(4)
-      @FormControlAnnotation<String>()
+      @RfControl<String>()
           final String? teamTwoName,
       @HiveField(5)
-      @FormControlAnnotation<int>()
+      @RfControl<int>()
           final int? teamOneScore,
       @HiveField(6)
-      @FormControlAnnotation<int>()
+      @RfControl<int>()
           final int? teamTwoScore,
       @HiveField(7)
-      @FormControlAnnotation<double>()
+      @RfControl<double>()
           final double? betAmount,
       @HiveField(8)
-      @FormControlAnnotation<String>()
+      @RfControl<String>()
           final String? prize,
       @HiveField(9)
-      @FormControlAnnotation<String>()
+      @RfControl<String>()
           final String? remarks,
       @HiveField(10)
-      @FormArrayAnnotation()
+      @RfArray()
           final List<Slot> slotList,
       @HiveField(11)
           final DateTime? createdAt,
@@ -525,46 +456,46 @@ abstract class _ECard implements ECard {
 
   @override
   @HiveField(0)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   String? get id;
   @override
   @HiveField(1)
   DateTime? get date;
   @override
   @HiveField(2)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   String? get title;
   @override
   @HiveField(3)
-  @FormControlAnnotation<String>(validators: [])
+  @RfControl<String>(validators: [])
   String? get teamOneName;
   @override
   @HiveField(4)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   String? get teamTwoName;
   @override
   @HiveField(5)
-  @FormControlAnnotation<int>()
+  @RfControl<int>()
   int? get teamOneScore;
   @override
   @HiveField(6)
-  @FormControlAnnotation<int>()
+  @RfControl<int>()
   int? get teamTwoScore;
   @override
   @HiveField(7)
-  @FormControlAnnotation<double>()
+  @RfControl<double>()
   double? get betAmount;
   @override
   @HiveField(8)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   String? get prize;
   @override
   @HiveField(9)
-  @FormControlAnnotation<String>()
+  @RfControl<String>()
   String? get remarks;
   @override
   @HiveField(10)
-  @FormArrayAnnotation()
+  @RfArray()
   List<Slot> get slotList;
   @override
   @HiveField(11)

@@ -126,7 +126,7 @@ class CardForm extends StatelessWidget {
           EzButton.elevated(
             title: "Save",
             onTap: () async {
-              await viewModel.createCard();
+              await viewModel.create();
             },
             background: kPrimaryColor,
           ),
@@ -135,7 +135,7 @@ class CardForm extends StatelessWidget {
             disabled: viewModel.formModel.form.pristine == true,
             title: "Update",
             onTap: () async {
-              await viewModel.updateCard();
+              await viewModel.update();
               viewModel.navigationService.pop(viewModel.formModel.model);
             },
           ),

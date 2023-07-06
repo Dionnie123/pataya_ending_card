@@ -10,19 +10,18 @@ import 'card_viewmodel.dart';
 
 @RoutePage()
 class CardView extends StatelessWidget {
-  final CardViewModel? viewModelParam;
-  final ECard? card;
-  final ActionType? action;
-  const CardView({super.key, this.card, this.action, this.viewModelParam});
+  final ECard card;
+  final ActionType action;
+  const CardView({super.key, required this.card, required this.action});
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CardViewModel>.reactive(
-        viewModelBuilder: () => viewModelParam ?? locator<CardViewModel>(),
+        viewModelBuilder: () => locator<CardViewModel>(),
         onViewModelReady: (viewModel) {
-          if (viewModelParam == null) {
-            viewModel.initForm(card, actionType: action);
-          }
+          viewModel.model = card;
+          viewModel.action = action;
+          viewModel.readyForm();
         },
         onDispose: (viewModel) {
           viewModel.formModel.form.dispose();
@@ -34,7 +33,7 @@ class CardView extends StatelessWidget {
             key: UniqueKey(),
             form: viewModel.formModel,
             child: Scaffold(
-              //  resizeToAvoidBottomInset: false,
+              resizeToAvoidBottomInset: false,
               appBar: AppBar(
                 title: viewModel.isAddMode()
                     ? const Text("Add Card")

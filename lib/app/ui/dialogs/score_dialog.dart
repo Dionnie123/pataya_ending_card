@@ -1,7 +1,7 @@
 import 'package:pataya_ending_card/app/helper/screen_size.dart';
 import 'package:flutter/material.dart';
+import 'package:pataya_ending_card/app/models/ecard.dart';
 import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
-import 'package:pataya_ending_card/app/views/card/card_viewmodel.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -18,100 +18,96 @@ class ScoreDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = request.data as CardViewModel?;
-
-    return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      child: ReactiveFormBuilder(
-          form: () => viewModel!.formModel.form,
-          builder: (context, form, child) {
-            Widget teamOneScore() {
-              return ReactiveTextField(
-                showErrors: (control) => false,
-                onChanged: (control) {
-                  viewModel?.formModel.form.markAsDirty();
-                },
-                formControl: viewModel?.formModel.teamOneScoreControl,
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.next,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                  label: Text(
-                      "${viewModel?.model?.teamOneName ?? "Team 1"} Score"),
-                ),
-              );
-            }
-
-            Widget teamTwoScore() {
-              return ReactiveTextField(
-                showErrors: (control) => false,
-                onChanged: (control) {
-                  viewModel?.formModel.form.markAsDirty();
-                },
-                formControl: viewModel?.formModel.teamTwoScoreControl,
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.next,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-                decoration: InputDecoration(
-                  label: Text(
-                      "${viewModel?.model?.teamTwoName ?? "Team 2"} Score"),
-                ),
-              );
-            }
-
-            Widget submit() {
-              return ReactiveFormConsumer(
-                builder: (context, formGroup, child) {
-                  return Column(
-                    children: [
-                      EzButton.elevated(
-                        disabled: (viewModel?.formModel.form.pristine == true),
-                        title: "UPDATE",
-                        onTap: () {
-                          completer.call(
-                            DialogResponse(data: viewModel?.formModel.model),
-                          );
-                        },
-                      ),
-                      vSpaceSmall,
-                    ],
-                  );
-                },
-              );
-            }
-
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(15, 15, 15, 13),
-                child: Container(
-                  width: 300,
-                  constraints: BoxConstraints(
-                      minHeight: 0, maxHeight: screenHeight(context) * 0.7),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      const Center(
-                        child: Text(
-                          "GAME SCORE",
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      vSpaceRegular,
-                      teamOneScore(),
-                      vSpaceRegular,
-                      teamTwoScore(),
-                      vSpaceRegular,
-                      submit(),
-                    ],
-                  ),
-                ),
+    return ECardFormBuilder(
+        model: request.data["card"] as ECard,
+        builder: (context, formGroup, child) {
+          Widget teamOneScore() {
+            return ReactiveTextField(
+              showErrors: (control) => false,
+              onChanged: (control) {
+                formGroup.form.markAsDirty();
+              },
+              formControl: formGroup.teamOneScoreControl,
+              keyboardType: TextInputType.number,
+              textInputAction: TextInputAction.next,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+              decoration: InputDecoration(
+                label: Text("${formGroup.model.teamOneName ?? "Team 1"} Score"),
               ),
             );
-          }),
-    );
+          }
+
+          Widget teamTwoScore() {
+            return ReactiveTextField(
+              showErrors: (control) => false,
+              onChanged: (control) {
+                formGroup.form.markAsDirty();
+              },
+              formControl: formGroup.teamTwoScoreControl,
+              keyboardType: TextInputType.number,
+              textInputAction: TextInputAction.next,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+              decoration: InputDecoration(
+                label: Text("${formGroup.model.teamTwoName ?? "Team 2"} Score"),
+              ),
+            );
+          }
+
+          Widget submit() {
+            return ReactiveECardFormConsumer(
+              builder: (context, formGroup, child) {
+                return Column(
+                  children: [
+                    EzButton.elevated(
+                      disabled: (formGroup.form.pristine == true),
+                      title: "UPDATE",
+                      onTap: () {
+                        completer.call(
+                          DialogResponse(data: formGroup.model),
+                        );
+                      },
+                    ),
+                    vSpaceSmall,
+                  ],
+                );
+              },
+            );
+          }
+
+          return Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(15, 15, 15, 13),
+                  child: Container(
+                    width: 300,
+                    constraints: BoxConstraints(
+                        minHeight: 0, maxHeight: screenHeight(context) * 0.7),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const Center(
+                          child: Text(
+                            "GAME SCORE",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        vSpaceRegular,
+                        teamOneScore(),
+                        vSpaceRegular,
+                        teamTwoScore(),
+                        vSpaceRegular,
+                        submit(),
+                      ],
+                    ),
+                  ),
+                ),
+              ));
+        });
   }
 }

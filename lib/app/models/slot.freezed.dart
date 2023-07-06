@@ -23,10 +23,10 @@ mixin _$Slot {
   @HiveField(0)
   String? get id => throw _privateConstructorUsedError;
   @HiveField(1)
-  @FormControlAnnotation()
+  @RfControl()
   String? get name => throw _privateConstructorUsedError;
   @HiveField(2)
-  @FormControlAnnotation()
+  @RfControl()
   bool? get isPaid => throw _privateConstructorUsedError;
   @HiveField(3)
   bool? get isWinner => throw _privateConstructorUsedError;
@@ -47,8 +47,8 @@ abstract class $SlotCopyWith<$Res> {
   @useResult
   $Res call(
       {@HiveField(0) String? id,
-      @HiveField(1) @FormControlAnnotation() String? name,
-      @HiveField(2) @FormControlAnnotation() bool? isPaid,
+      @HiveField(1) @RfControl() String? name,
+      @HiveField(2) @RfControl() bool? isPaid,
       @HiveField(3) bool? isWinner,
       @HiveField(4) DateTime? createdAt,
       @HiveField(5) DateTime? updatedAt});
@@ -111,8 +111,8 @@ abstract class _$$_SlotCopyWith<$Res> implements $SlotCopyWith<$Res> {
   @useResult
   $Res call(
       {@HiveField(0) String? id,
-      @HiveField(1) @FormControlAnnotation() String? name,
-      @HiveField(2) @FormControlAnnotation() bool? isPaid,
+      @HiveField(1) @RfControl() String? name,
+      @HiveField(2) @RfControl() bool? isPaid,
       @HiveField(3) bool? isWinner,
       @HiveField(4) DateTime? createdAt,
       @HiveField(5) DateTime? updatedAt});
@@ -169,8 +169,8 @@ class __$$_SlotCopyWithImpl<$Res> extends _$SlotCopyWithImpl<$Res, _$_Slot>
 class _$_Slot implements _Slot {
   _$_Slot(
       {@HiveField(0) this.id,
-      @HiveField(1) @FormControlAnnotation() this.name,
-      @HiveField(2) @FormControlAnnotation() this.isPaid = false,
+      @HiveField(1) @RfControl() this.name,
+      @HiveField(2) @RfControl() this.isPaid = false,
       @HiveField(3) this.isWinner = false,
       @HiveField(4) this.createdAt,
       @HiveField(5) this.updatedAt});
@@ -182,12 +182,12 @@ class _$_Slot implements _Slot {
   final String? id;
   @override
   @HiveField(1)
-  @FormControlAnnotation()
+  @RfControl()
   final String? name;
   @override
   @JsonKey()
   @HiveField(2)
-  @FormControlAnnotation()
+  @RfControl()
   final bool? isPaid;
   @override
   @JsonKey()
@@ -243,8 +243,8 @@ class _$_Slot implements _Slot {
 abstract class _Slot implements Slot {
   factory _Slot(
       {@HiveField(0) final String? id,
-      @HiveField(1) @FormControlAnnotation() final String? name,
-      @HiveField(2) @FormControlAnnotation() final bool? isPaid,
+      @HiveField(1) @RfControl() final String? name,
+      @HiveField(2) @RfControl() final bool? isPaid,
       @HiveField(3) final bool? isWinner,
       @HiveField(4) final DateTime? createdAt,
       @HiveField(5) final DateTime? updatedAt}) = _$_Slot;
@@ -256,11 +256,11 @@ abstract class _Slot implements Slot {
   String? get id;
   @override
   @HiveField(1)
-  @FormControlAnnotation()
+  @RfControl()
   String? get name;
   @override
   @HiveField(2)
-  @FormControlAnnotation()
+  @RfControl()
   bool? get isPaid;
   @override
   @HiveField(3)

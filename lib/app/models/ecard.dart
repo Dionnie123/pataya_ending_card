@@ -8,25 +8,23 @@ part 'ecard.gform.dart';
 
 @Freezed()
 @HiveType(typeId: 0, adapterName: "ECardAdapter")
-@ReactiveFormAnnotation()
+@Rf()
 class ECard with _$ECard {
   @JsonSerializable(
     fieldRename: FieldRename.snake,
   )
   factory ECard({
-    @HiveField(0) @FormControlAnnotation<String>() String? id,
+    @HiveField(0) @RfControl<String>() String? id,
     @HiveField(1) DateTime? date,
-    @HiveField(2) @FormControlAnnotation<String>() String? title,
-    @HiveField(3)
-    @FormControlAnnotation<String>(validators: [])
-    String? teamOneName,
-    @HiveField(4) @FormControlAnnotation<String>() String? teamTwoName,
-    @HiveField(5) @FormControlAnnotation<int>() int? teamOneScore,
-    @HiveField(6) @FormControlAnnotation<int>() int? teamTwoScore,
-    @HiveField(7) @FormControlAnnotation<double>() double? betAmount,
-    @HiveField(8) @FormControlAnnotation<String>() String? prize,
-    @HiveField(9) @FormControlAnnotation<String>() String? remarks,
-    @HiveField(10) @Default([]) @FormArrayAnnotation() List<Slot> slotList,
+    @HiveField(2) @RfControl<String>() String? title,
+    @HiveField(3) @RfControl<String>(validators: []) String? teamOneName,
+    @HiveField(4) @RfControl<String>() String? teamTwoName,
+    @HiveField(5) @RfControl<int>() int? teamOneScore,
+    @HiveField(6) @RfControl<int>() int? teamTwoScore,
+    @HiveField(7) @RfControl<double>() double? betAmount,
+    @HiveField(8) @RfControl<String>() String? prize,
+    @HiveField(9) @RfControl<String>() String? remarks,
+    @HiveField(10) @Default([]) @RfArray() List<Slot> slotList,
     @HiveField(11) DateTime? createdAt,
     @HiveField(12) DateTime? updatedAt,
   }) = _ECard;
