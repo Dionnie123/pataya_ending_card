@@ -1,15 +1,14 @@
-import 'package:collection/collection.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/dialog_ui.dart';
 import 'package:pataya_ending_card/app/app.logger.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
 import 'package:flutter/material.dart';
+import 'package:pataya_ending_card/app/extensions/ecard_extension.dart';
 import 'package:pataya_ending_card/app/routes/app_router.gr.dart';
 import 'package:pataya_ending_card/app/services/_core/ecard_service.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import '../../extensions/slot_extension.dart';
 import '../../models/ecard.dart';
 import '../../models/slot.dart';
 import '../../routes/app_router.dart';
@@ -56,43 +55,9 @@ class CardSlotsViewModel extends ReactiveViewModel {
     formModel.form.addAll(formGroup.controls);
   }
 
-  List<Slot> _slots = [];
-  List<Slot> get slots => _slots;
-
-  String get winningId {
-    int? a = formModel.model.teamOneScore;
-    int? b = formModel.model.teamTwoScore;
-    final h = [a, b];
-    h.sort((a, b) {
-      if (a == null) {
-        return 1;
-      }
-      if (b == null) {
-        return -1;
-      }
-      return b.compareTo(a);
-    });
-
-    return h.map((e) => e != null ? e % 10 : null).join("-");
-  }
+  List<Slot> get slots => formModel.model.generateSlots();
 
   String? selectedSlotId;
-  mapSlot() {
-    _slots = [];
-    final s = formModel.model.slotList;
-    for (var i = 0; i < 25; i++) {
-      for (var j = 0; j < 4; j++) {
-        var slotId =
-            SlotExtension.slotFormat(i == 0 && j == 0 ? 0 : i + j * 25);
-        var slot = s.firstWhereOrNull((val) => val.id == slotId);
-        var x = slot != null
-            ? slot.copyWith(isWinner: slot.id == winningId)
-            : Slot(id: slotId).copyWith(isWinner: slotId == winningId);
-        _slots.add(x);
-      }
-    }
-    notifyListeners();
-  }
 
   showCardForm() {
     navigationService
@@ -122,7 +87,13 @@ class CardSlotsViewModel extends ReactiveViewModel {
     ).then((value) async {
       if (value?.data is ECard) {
         formModel.updateValue(value?.data);
-        mapSlot();
+        notifyListeners();
+
+        dialogService.showDialog(
+            description: formModel.model.winningSlotId() != null
+                ? "May Nanalo!"
+                : "Walang Nanalo");
+
         await updateCard();
       }
     });
@@ -151,7 +122,7 @@ class CardSlotsViewModel extends ReactiveViewModel {
             formModel.addSlotListItem(slot);
           }
         }
-        mapSlot();
+        notifyListeners();
         await updateCard();
       }
     });

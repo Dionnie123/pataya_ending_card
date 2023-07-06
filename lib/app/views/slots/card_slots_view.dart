@@ -27,7 +27,6 @@ class CardSlotsView extends StatelessWidget {
           viewModel.model = card;
           viewModel.action = action;
           viewModel.readyForm();
-          viewModel.mapSlot();
         },
         onDispose: (viewModel) {
           viewModel.formModel.form.dispose();
