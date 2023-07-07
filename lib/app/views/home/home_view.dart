@@ -1,8 +1,9 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/constants/dimensions.dart';
+import 'package:pataya_ending_card/app/models/ecard.dart';
 import 'package:pataya_ending_card/app/routes/app_router.gr.dart';
 import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
 import 'package:pataya_ending_card/app/views/slots/card_slots_view.dart';
@@ -57,7 +58,7 @@ class _HomeViewState extends State<HomeView>
               floatingActionButton: FloatingActionButton(
                   onPressed: () {
                     locator<AppRouter>().push(
-                      CardRoute(action: ActionType.add),
+                      CardRoute(card: ECard(), action: ActionType.add),
                     );
                   },
                   child: const Icon(Icons.add)),
@@ -73,8 +74,8 @@ class _HomeViewState extends State<HomeView>
                     padding: Dimens.computedWidth(
                         screenSize: size,
                         targetWidth: 500,
-                        hPadding: 0,
-                        vPadding: 0),
+                        hPadding: 15,
+                        vPadding: 15),
                     itemCount: viewModel.cards.length,
                     itemBuilder: (context, index) {
                       final item = viewModel.cards[index];
@@ -115,15 +116,17 @@ class _HomeViewState extends State<HomeView>
                             }
                           },
                           child: Card(
+                            margin: EdgeInsetsDirectional.zero,
                             child: InkWell(
                               onTap: () {
                                 viewModel.navigationService
                                     .pushWidget(CardSlotsView(
                                   card: item,
+                                  action: ActionType.update,
                                 ));
                               },
                               child: Padding(
-                                padding: const EdgeInsets.all(10.0),
+                                padding: const EdgeInsets.all(15.0),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -138,7 +141,6 @@ class _HomeViewState extends State<HomeView>
                                         Text(
                                           "${item.teamOneName ?? ""} vs. ${item.teamTwoName ?? ""} ",
                                         ),
-                                        vSpaceTiny,
                                         Text(item.title ?? ""),
                                         if (item.date != null)
                                           Text(DateFormat('EEE, MMM. d y h:mma')
@@ -157,6 +159,7 @@ class _HomeViewState extends State<HomeView>
                                             "Score : ${item.teamOneScore ?? ""} ${item.teamTwoScore != null ? "- ${item.teamTwoScore}" : ""}"),
                                         const Text("Slots   : 24/99"),
                                         const Text("Paid    : 7/9"),
+                                        const Text("Win    : 7/9"),
                                       ],
                                     ),
                                   ],

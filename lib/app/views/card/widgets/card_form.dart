@@ -68,38 +68,6 @@ class CardForm extends StatelessWidget {
       );
     }
 
-    Widget teamOneScore() {
-      return ReactiveTextField(
-        onChanged: (control) {
-          viewModel.mapSlot();
-        },
-        showErrors: (control) => false,
-        formControl: viewModel.formModel.teamOneScoreControl,
-        keyboardType: TextInputType.number,
-        textInputAction: TextInputAction.next,
-        style: const TextStyle(fontWeight: FontWeight.bold),
-        decoration: const InputDecoration(
-          label: Text("Team 1 Score"),
-        ),
-      );
-    }
-
-    Widget teamTwoScore() {
-      return ReactiveTextField(
-        onChanged: (control) {
-          viewModel.mapSlot();
-        },
-        showErrors: (control) => false,
-        formControl: viewModel.formModel.teamTwoScoreControl,
-        keyboardType: TextInputType.number,
-        textInputAction: TextInputAction.next,
-        style: const TextStyle(fontWeight: FontWeight.bold),
-        decoration: const InputDecoration(
-          label: Text("Team 2 Score"),
-        ),
-      );
-    }
-
     Widget betAmount() {
       return ReactiveTextField(
         showErrors: (control) => false,
@@ -158,7 +126,7 @@ class CardForm extends StatelessWidget {
           EzButton.elevated(
             title: "Save",
             onTap: () async {
-              await viewModel.createCard();
+              await viewModel.create();
             },
             background: kPrimaryColor,
           ),
@@ -167,7 +135,7 @@ class CardForm extends StatelessWidget {
             disabled: viewModel.formModel.form.pristine == true,
             title: "Update",
             onTap: () async {
-              await viewModel.updateCard();
+              await viewModel.update();
               viewModel.navigationService.pop(viewModel.formModel.model);
             },
           ),

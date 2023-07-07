@@ -29,8 +29,7 @@ abstract class $AppRouter extends _i5.RootStackRouter {
       );
     },
     CardRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<CardRouteArgs>(orElse: () => const CardRouteArgs());
+      final args = routeData.argsAs<CardRouteArgs>();
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.CardView(
@@ -79,8 +78,8 @@ class CardShellRoute extends _i5.PageRouteInfo<void> {
 class CardRoute extends _i5.PageRouteInfo<CardRouteArgs> {
   CardRoute({
     _i6.Key? key,
-    _i7.ECard? card,
-    _i8.ActionType? action,
+    required _i7.ECard card,
+    required _i8.ActionType action,
     List<_i5.PageRouteInfo>? children,
   }) : super(
           CardRoute.name,
@@ -101,15 +100,15 @@ class CardRoute extends _i5.PageRouteInfo<CardRouteArgs> {
 class CardRouteArgs {
   const CardRouteArgs({
     this.key,
-    this.card,
-    this.action,
+    required this.card,
+    required this.action,
   });
 
   final _i6.Key? key;
 
-  final _i7.ECard? card;
+  final _i7.ECard card;
 
-  final _i8.ActionType? action;
+  final _i8.ActionType action;
 
   @override
   String toString() {
@@ -136,8 +135,8 @@ class HomeRoute extends _i5.PageRouteInfo<void> {
 class CardSlotsRoute extends _i5.PageRouteInfo<CardSlotsRouteArgs> {
   CardSlotsRoute({
     _i6.Key? key,
-    required _i7.ECard? card,
-    _i8.ActionType? action,
+    required _i7.ECard card,
+    required _i8.ActionType action,
     List<_i5.PageRouteInfo>? children,
   }) : super(
           CardSlotsRoute.name,
@@ -159,14 +158,14 @@ class CardSlotsRouteArgs {
   const CardSlotsRouteArgs({
     this.key,
     required this.card,
-    this.action,
+    required this.action,
   });
 
   final _i6.Key? key;
 
-  final _i7.ECard? card;
+  final _i7.ECard card;
 
-  final _i8.ActionType? action;
+  final _i8.ActionType action;
 
   @override
   String toString() {

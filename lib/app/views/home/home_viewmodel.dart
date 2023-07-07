@@ -16,7 +16,6 @@ class HomeViewModel extends ReactiveViewModel {
   final log = getLogger('HomeViewModel');
 
   final _dialogService = locator<DialogService>();
-  final _bottomSheetService = locator<BottomSheetService>();
   final _eCardService = locator<ECardService>();
   final navigationService = locator<AppRouter>();
 

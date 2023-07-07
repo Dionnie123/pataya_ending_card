@@ -12,15 +12,13 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 import 'package:stacked_themes/src/theme_service.dart';
-
 import 'routes/app_router.dart';
 import 'services/_core/ecard_service.dart';
 import 'services/_core/local_storage_service.dart';
-import 'ui/dialogs/score_dialog_viewmodel.dart';
-import 'ui/dialogs/slot_dialog_viewmodel.dart';
 import 'views/card/card_viewmodel.dart';
 import 'views/home/home_viewmodel.dart';
 import 'views/settings/settings_view_model.dart';
+import 'views/slots/card_slots_viewmodel.dart';
 
 final locator = StackedLocator.instance;
 
@@ -38,7 +36,6 @@ Future<void> setupLocator({
 
   final eCardService = await ECardService.getInstance();
   locator.registerSingleton(eCardService);
-
   locator.registerLazySingleton(() => ThemeService.getInstance());
   locator.registerSingleton(AppRouter());
   locator.registerLazySingleton(() => DialogService());
@@ -48,6 +45,5 @@ Future<void> setupLocator({
   locator.registerSingleton(HomeViewModel());
   locator.registerSingleton(SettingsViewModel());
   locator.registerSingleton(CardViewModel());
-  locator.registerSingleton(SlotDialogViewModel());
-  locator.registerSingleton(ScoreDialogViewModel());
+  locator.registerSingleton(CardSlotsViewModel());
 }
