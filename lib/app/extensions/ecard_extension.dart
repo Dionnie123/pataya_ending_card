@@ -14,6 +14,15 @@ extension SlotExtension on ECard {
     return scores.map((e) => e % 10).join("-");
   }
 
+  Slot? winnerSlot() {
+    for (var i = 0; i < slotList.length; i++) {
+      if (slotList[i].id == winningSlotId()) {
+        return slotList[i];
+      }
+    }
+    return null;
+  }
+
   List<Slot> generateSlots() {
     List<Slot> slots = [];
     for (var i = 0; i < 25; i++) {
