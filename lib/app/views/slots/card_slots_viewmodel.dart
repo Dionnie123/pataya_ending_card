@@ -71,27 +71,26 @@ class CardSlotsViewModel extends ReactiveViewModel {
     });
   }
 
-  updateScore() {
-    dialogService.showCustomDialog(
+  updateScore() async {
+    final res = await dialogService.showCustomDialog(
       takesInput: true,
       variant: DialogType.score,
       barrierDismissible: true,
       data: {
         'card': formModel.model,
       },
-    ).then((value) async {
-      if (value?.data is ECard) {
-        formModel.updateValue(value?.data);
+    );
+    if (res?.data is ECard) {
+      formModel.updateValue(res?.data);
+      notifyListeners();
+      await dialogService.showCustomDialog(
+          variant: DialogType.simple,
+          description: formModel.model.winnerSlot() != null
+              ? "May Nanalo!"
+              : "Walang Nanalo");
 
-        dialogService.showCustomDialog(
-            variant: DialogType.simple,
-            description: formModel.model.winnerSlot() != null
-                ? "May Nanalo!"
-                : "Walang Nanalo");
-        notifyListeners();
-        await updateCard();
-      }
-    });
+      await updateCard();
+    }
   }
 
   updateSlot(Slot? slot, ActionType action) {
