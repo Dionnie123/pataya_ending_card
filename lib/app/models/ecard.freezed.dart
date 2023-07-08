@@ -415,42 +415,21 @@ class _$_ECard implements _ECard {
 
 abstract class _ECard implements ECard {
   factory _ECard(
-      {@HiveField(0)
-      @RfControl<String>()
-          final String? id,
-      @HiveField(1)
-          final DateTime? date,
-      @HiveField(2)
-      @RfControl<String>()
-          final String? title,
+      {@HiveField(0) @RfControl<String>() final String? id,
+      @HiveField(1) final DateTime? date,
+      @HiveField(2) @RfControl<String>() final String? title,
       @HiveField(3)
       @RfControl<String>(validators: [])
-          final String? teamOneName,
-      @HiveField(4)
-      @RfControl<String>()
-          final String? teamTwoName,
-      @HiveField(5)
-      @RfControl<int>()
-          final int? teamOneScore,
-      @HiveField(6)
-      @RfControl<int>()
-          final int? teamTwoScore,
-      @HiveField(7)
-      @RfControl<double>()
-          final double? betAmount,
-      @HiveField(8)
-      @RfControl<String>()
-          final String? prize,
-      @HiveField(9)
-      @RfControl<String>()
-          final String? remarks,
-      @HiveField(10)
-      @RfArray()
-          final List<Slot> slotList,
-      @HiveField(11)
-          final DateTime? createdAt,
-      @HiveField(12)
-          final DateTime? updatedAt}) = _$_ECard;
+      final String? teamOneName,
+      @HiveField(4) @RfControl<String>() final String? teamTwoName,
+      @HiveField(5) @RfControl<int>() final int? teamOneScore,
+      @HiveField(6) @RfControl<int>() final int? teamTwoScore,
+      @HiveField(7) @RfControl<double>() final double? betAmount,
+      @HiveField(8) @RfControl<String>() final String? prize,
+      @HiveField(9) @RfControl<String>() final String? remarks,
+      @HiveField(10) @RfArray() final List<Slot> slotList,
+      @HiveField(11) final DateTime? createdAt,
+      @HiveField(12) final DateTime? updatedAt}) = _$_ECard;
 
   factory _ECard.fromJson(Map<String, dynamic> json) = _$_ECard.fromJson;
 

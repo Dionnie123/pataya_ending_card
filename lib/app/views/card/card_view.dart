@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
@@ -8,7 +7,6 @@ import 'package:pataya_ending_card/app/views/card/widgets/card_form.dart';
 import 'package:stacked/stacked.dart';
 import 'card_viewmodel.dart';
 
-@RoutePage()
 class CardView extends StatelessWidget {
   final ECard card;
   final ActionType action;

@@ -136,7 +136,7 @@ class CardForm extends StatelessWidget {
             title: "Update",
             onTap: () async {
               await viewModel.update();
-              viewModel.navigationService.pop(viewModel.formModel.model);
+              viewModel.routingService.back(result: viewModel.formModel.model);
             },
           ),
         vSpaceRegular,

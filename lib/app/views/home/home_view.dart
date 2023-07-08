@@ -1,43 +1,20 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:pataya_ending_card/app/app.router.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/constants/dimensions.dart';
 import 'package:pataya_ending_card/app/models/ecard.dart';
-import 'package:pataya_ending_card/app/routes/app_router.gr.dart';
 import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
-import 'package:pataya_ending_card/app/views/slots/card_slots_view.dart';
+
 import 'package:stacked/stacked.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
 import 'package:pataya_ending_card/app/views/home/home_viewmodel.dart';
-
-import '../../routes/app_router.dart';
+import 'package:stacked_services/stacked_services.dart';
 import '../../ui/_core/empty_display.dart';
 import '../../ui/_core/scaffold_list_wrapper.dart';
 
-@RoutePage()
-class HomeView extends StatefulWidget {
+class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
-
-  @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +34,8 @@ class _HomeViewState extends State<HomeView>
               ),
               floatingActionButton: FloatingActionButton(
                   onPressed: () {
-                    locator<AppRouter>().push(
-                      CardRoute(card: ECard(), action: ActionType.add),
-                    );
+                    locator<RouterService>().navigateTo(
+                        CardViewRoute(card: ECard(), action: ActionType.add));
                   },
                   child: const Icon(Icons.add)),
               body: ScaffoldListWrapper(
@@ -119,11 +95,9 @@ class _HomeViewState extends State<HomeView>
                             margin: EdgeInsetsDirectional.zero,
                             child: InkWell(
                               onTap: () {
-                                viewModel.navigationService
-                                    .pushWidget(CardSlotsView(
-                                  card: item,
-                                  action: ActionType.update,
-                                ));
+                                viewModel.routingService.navigateTo(
+                                    CardSlotsViewRoute(
+                                        card: item, action: ActionType.add));
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(15.0),

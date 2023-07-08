@@ -1,17 +1,16 @@
+import 'package:pataya_ending_card/app/app.router.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/dialog_ui.dart';
 import 'package:pataya_ending_card/app/app.logger.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
 import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/extensions/ecard_extension.dart';
-import 'package:pataya_ending_card/app/routes/app_router.gr.dart';
 import 'package:pataya_ending_card/app/services/_core/ecard_service.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import '../../models/ecard.dart';
 import '../../models/slot.dart';
-import '../../routes/app_router.dart';
 
 class CardSlotsViewModel extends ReactiveViewModel {
   @override
@@ -30,7 +29,7 @@ class CardSlotsViewModel extends ReactiveViewModel {
   final log = getLogger('CardSlotsViewModel');
 
   final dialogService = locator<DialogService>();
-  final navigationService = locator<AppRouter>();
+  final routingService = locator<RouterService>();
   final _eCardService = locator<ECardService>();
 
   bool isAddMode() {
@@ -60,13 +59,9 @@ class CardSlotsViewModel extends ReactiveViewModel {
   String? selectedSlotId;
 
   showCardForm() {
-    navigationService
-        .push(
-      CardRoute(
-        card: formModel.model,
-        action: ActionType.update,
-      ),
-    )
+    routingService
+        .navigateTo(
+            CardViewRoute(card: formModel.model, action: ActionType.update))
         .then((value) {
       if (value is ECard) {
         model = value;

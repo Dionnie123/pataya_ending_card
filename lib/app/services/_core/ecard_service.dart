@@ -4,17 +4,22 @@ import 'package:pataya_ending_card/app/models/slot.dart';
 import 'package:stacked/stacked.dart';
 import 'package:uuid/uuid.dart';
 
-class ECardService with ListenableServiceMixin {
+class ECardService with ListenableServiceMixin, Initialisable {
   static ECardService? _instance;
   static late Box _box;
-  static Future<ECardService> getInstance() async {
+
+  @override
+  Future<void> initialise() async {
     Hive.registerAdapter<ECard>(ECardAdapter());
     Hive.registerAdapter<Slot>(SlotAdapter());
     _box = await Hive.openBox<ECard>("cards");
 
     _instance ??= ECardService();
-    return Future.value(_instance);
   }
+
+/*   static Future<ECardService> getInstance() async {
+    return Future.value(_instance);
+  } */
 
   ECardService() {
     listenToReactiveValues([

@@ -4,7 +4,6 @@ import 'package:pataya_ending_card/app/app.logger.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
 import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/models/ecard.dart';
-import 'package:pataya_ending_card/app/routes/app_router.dart';
 import 'package:pataya_ending_card/app/services/_core/ecard_service.dart';
 import 'package:reactive_forms_annotations/reactive_forms_annotations.dart';
 import 'package:stacked/stacked.dart';
@@ -32,7 +31,7 @@ class CardViewModel extends ReactiveViewModel {
   final log = getLogger('CardViewModel');
 
   final dialogService = locator<DialogService>();
-  final navigationService = locator<AppRouter>();
+  final routingService = locator<RouterService>();
   final _eCardService = locator<ECardService>();
 
   bool isAddMode() {
@@ -59,7 +58,7 @@ class CardViewModel extends ReactiveViewModel {
 
   create() async {
     await runBusyFuture(_eCardService.create(formModel.model))
-        .then((value) => navigationService.pop());
+        .then((value) => routingService.back());
   }
 
   update() async {

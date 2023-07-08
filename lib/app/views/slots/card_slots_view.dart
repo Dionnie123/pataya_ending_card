@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
@@ -9,7 +8,6 @@ import 'package:pataya_ending_card/app/views/card/widgets/slot.dart';
 import 'package:pataya_ending_card/app/views/slots/card_slots_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
-@RoutePage()
 class CardSlotsView extends StatelessWidget {
   final ECard card;
   final ActionType action;
