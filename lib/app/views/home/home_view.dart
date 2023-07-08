@@ -34,8 +34,8 @@ class HomeView extends StatelessWidget {
               ),
               floatingActionButton: FloatingActionButton(
                   onPressed: () {
-                    locator<RouterService>().navigateTo(
-                        CardViewRoute(card: ECard(), action: ActionType.add));
+                    locator<RouterService>().navigateToCardView(
+                        card: ECard(), action: ActionType.add);
                   },
                   child: const Icon(Icons.add)),
               body: ScaffoldListWrapper(

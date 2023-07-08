@@ -32,7 +32,7 @@ Future<void> setupLocator({
 
 // Register dependencies
   final eCardService = ECardService();
-  await eCardService.init();
+  await eCardService.initialise();
   locator.registerSingleton(eCardService);
 
   locator.registerLazySingleton(() => RouterService());

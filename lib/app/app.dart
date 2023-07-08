@@ -14,10 +14,11 @@ import 'views/card/card_viewmodel.dart';
   routes: [
     MaterialRoute(
       page: HomeView,
+      path: '/',
       initial: true,
     ),
-    MaterialRoute(page: CardView, maintainState: false),
-    MaterialRoute(page: CardSlotsView, maintainState: false),
+    MaterialRoute(path: '/', page: CardView),
+    MaterialRoute(path: '/', page: CardSlotsView),
   ],
   dependencies: [
     /*   Presolve(

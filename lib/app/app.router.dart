@@ -39,7 +39,6 @@ class StackedRouterWeb extends _i5.RootStackRouter {
           card: args.card,
           action: args.action,
         ),
-        maintainState: false,
       );
     },
     CardSlotsViewRoute.name: (routeData) {
@@ -51,7 +50,6 @@ class StackedRouterWeb extends _i5.RootStackRouter {
           card: args.card,
           action: args.action,
         ),
-        maintainState: false,
       );
     },
   };
@@ -64,11 +62,11 @@ class StackedRouterWeb extends _i5.RootStackRouter {
         ),
         _i5.RouteConfig(
           CardViewRoute.name,
-          path: '/card-view',
+          path: '/',
         ),
         _i5.RouteConfig(
           CardSlotsViewRoute.name,
-          path: '/card-slots-view',
+          path: '/',
         ),
       ];
 }
@@ -94,7 +92,7 @@ class CardViewRoute extends _i5.PageRouteInfo<CardViewArgs> {
     required _i8.ActionType action,
   }) : super(
           CardViewRoute.name,
-          path: '/card-view',
+          path: '/',
           args: CardViewArgs(
             key: key,
             card: card,
@@ -133,7 +131,7 @@ class CardSlotsViewRoute extends _i5.PageRouteInfo<CardSlotsViewArgs> {
     required _i8.ActionType action,
   }) : super(
           CardSlotsViewRoute.name,
-          path: '/card-slots-view',
+          path: '/',
           args: CardSlotsViewArgs(
             key: key,
             card: card,
