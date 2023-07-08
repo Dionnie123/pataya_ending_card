@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pataya_ending_card/app/constants/colors.dart';
+import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
 
 import '../../../models/slot.dart';
 
@@ -57,10 +58,20 @@ class SlotCell extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      "${slot.id}",
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 13),
+                    Row(
+                      children: [
+                        Text(
+                          "${slot.id}",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 13),
+                        ),
+                        hSpaceSmall,
+                        if (slot.isWinner ?? false)
+                          const Icon(
+                            Icons.star_rounded,
+                            color: Colors.orange,
+                          ),
+                      ],
                     ),
                     const SizedBox(width: 3),
                     Text(

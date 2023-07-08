@@ -83,11 +83,10 @@ class CardSlotsViewModel extends ReactiveViewModel {
     if (res?.data is ECard) {
       formModel.updateValue(res?.data);
       notifyListeners();
-      await dialogService.showCustomDialog(
-          variant: DialogType.simple,
-          description: formModel.model.winnerSlot() != null
-              ? "May Nanalo!"
-              : "Walang Nanalo");
+      await dialogService.showCustomDialog(variant: DialogType.result, data: {
+        'winnerSlot': formModel.model.winnerSlot(),
+        'winningSlotId': formModel.model.winningSlotId()
+      });
 
       await updateCard();
     }

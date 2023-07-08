@@ -63,7 +63,7 @@ class ECardService with ListenableServiceMixin, Initialisable {
     notifyListeners();
   }
 
-  Future delete(String id) async {
+  Future delete(String? id) async {
     _ecards.value.removeWhere((e) => e.id == id);
     await _box.delete(id);
     notifyListeners();

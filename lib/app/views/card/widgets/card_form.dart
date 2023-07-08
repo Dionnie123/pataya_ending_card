@@ -143,7 +143,9 @@ class CardForm extends StatelessWidget {
         if (viewModel.isUpdateMode())
           EzButton.outline(
             title: "Delete",
-            onTap: () {},
+            onTap: () async {
+              await viewModel.delete();
+            },
             background: Colors.red,
           )
       ],

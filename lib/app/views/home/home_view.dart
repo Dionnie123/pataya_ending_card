@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:pataya_ending_card/app/app.router.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/constants/dimensions.dart';
+import 'package:pataya_ending_card/app/extensions/ecard_extension.dart';
+import 'package:pataya_ending_card/app/extensions/string_extension.dart';
 import 'package:pataya_ending_card/app/models/ecard.dart';
 import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
 
@@ -92,7 +94,6 @@ class HomeView extends StatelessWidget {
                             }
                           },
                           child: Card(
-                            margin: EdgeInsetsDirectional.zero,
                             child: InkWell(
                               onTap: () {
                                 viewModel.routingService.navigateTo(
@@ -112,12 +113,26 @@ class HomeView extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          "${item.teamOneName ?? ""} vs. ${item.teamTwoName ?? ""} ",
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "${item.teamOneName ?? ""} vs. ${item.teamTwoName ?? ""} "
+                                                  .toUpperCase(),
+                                            ),
+                                            hSpaceSmall,
+                                            if (item.winnerSlot() != null)
+                                              const Icon(
+                                                Icons.star_rounded,
+                                                color: Colors.orange,
+                                              )
+                                          ],
                                         ),
-                                        Text(item.title ?? ""),
+                                        if (item.title != null)
+                                          Text(
+                                              (item.title ?? "").toTitleCase()),
                                         if (item.date != null)
-                                          Text(DateFormat('EEE, MMM. d y h:mma')
+                                          Text(DateFormat(
+                                                  'EEE, MMM. d y h:mm a')
                                               .format(
                                                   item.date ?? DateTime.now())),
                                       ],
@@ -133,7 +148,6 @@ class HomeView extends StatelessWidget {
                                             "Score : ${item.teamOneScore ?? ""} ${item.teamTwoScore != null ? "- ${item.teamTwoScore}" : ""}"),
                                         const Text("Slots   : 24/99"),
                                         const Text("Paid    : 7/9"),
-                                        const Text("Win    : 7/9"),
                                       ],
                                     ),
                                   ],

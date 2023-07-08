@@ -1,3 +1,4 @@
+import 'package:pataya_ending_card/app/app.router.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/dialog_ui.dart';
 import 'package:pataya_ending_card/app/app.logger.dart';
@@ -62,6 +63,12 @@ class CardViewModel extends ReactiveViewModel {
   }
 
   update() async {
-    await runBusyFuture(_eCardService.update(formModel.model));
+    await runBusyFuture(_eCardService.update(formModel.model))
+        .then((value) => routingService.pop());
+  }
+
+  delete() async {
+    await runBusyFuture(_eCardService.delete(formModel.model.id)).then(
+        (value) => routingService.clearStackAndShow(const HomeViewRoute()));
   }
 }
