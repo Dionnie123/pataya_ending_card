@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
     if (!kIsWeb) FlutterNativeSplash.remove();
     return ResponsiveApp(
       builder: (_) => MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         title: "Digicard",
         theme: ThemeData(
           colorSchemeSeed: kPrimaryColor,

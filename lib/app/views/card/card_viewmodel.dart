@@ -64,7 +64,7 @@ class CardViewModel extends ReactiveViewModel {
 
   update() async {
     await runBusyFuture(_eCardService.update(formModel.model))
-        .then((value) => routingService.pop());
+        .then((value) => routingService.pop(value));
   }
 
   delete() async {

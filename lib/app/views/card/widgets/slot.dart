@@ -26,10 +26,10 @@ class SlotCell extends StatelessWidget {
             side: BorderSide(
                 color: isSelected ? kPrimaryColor : Colors.grey,
                 width: isSelected ? 2 : 1),
-            borderRadius: BorderRadius.circular(4.0)),
+            borderRadius: BorderRadius.circular(0.0)),
         margin: EdgeInsets.zero,
         child: Container(
-          height: 50,
+          //   height: 50,
           width: 150,
           decoration: BoxDecoration(
             color: slot.name != null
@@ -50,38 +50,32 @@ class SlotCell extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(5, 3, 5, 3),
-            child: Row(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          "${slot.id}",
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 13),
-                        ),
-                        hSpaceSmall,
-                        if (slot.isWinner ?? false)
-                          const Icon(
-                            Icons.star_rounded,
-                            color: Colors.orange,
-                          ),
-                      ],
-                    ),
-                    const SizedBox(width: 3),
                     Text(
-                      slot.name ?? '',
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      style: const TextStyle(fontSize: 12, height: 1),
-                    )
+                      "${slot.id}",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 13),
+                    ),
+                    hSpaceSmall,
+                    if (slot.isWinner ?? false)
+                      const Icon(
+                        Icons.star_rounded,
+                        color: Colors.orange,
+                      ),
                   ],
                 ),
+                const SizedBox(width: 3),
+                Text(
+                  slot.name ?? '',
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: const TextStyle(fontSize: 12, height: 1),
+                )
               ],
             ),
           ),

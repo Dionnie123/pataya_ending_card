@@ -65,7 +65,7 @@ class CardSlotsViewModel extends ReactiveViewModel {
         .then((value) {
       if (value is ECard) {
         model = value;
-        readyForm();
+        formModel.updateValue(value);
         notifyListeners();
       }
     });
@@ -83,10 +83,15 @@ class CardSlotsViewModel extends ReactiveViewModel {
     if (res?.data is ECard) {
       formModel.updateValue(res?.data);
       notifyListeners();
-      await dialogService.showCustomDialog(variant: DialogType.result, data: {
-        'winnerSlot': formModel.model.winnerSlot(),
-        'winningSlotId': formModel.model.winningSlotId()
-      });
+      await dialogService.showCustomDialog(
+          useSafeArea: false,
+          takesInput: false,
+          barrierDismissible: true,
+          variant: DialogType.result,
+          data: {
+            'winnerSlot': formModel.model.winnerSlot(),
+            'winningSlotId': formModel.model.winningSlotId()
+          });
 
       await updateCard();
     }

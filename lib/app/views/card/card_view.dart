@@ -33,11 +33,7 @@ class CardView extends StatelessWidget {
             child: Scaffold(
               resizeToAvoidBottomInset: false,
               appBar: AppBar(
-                title: viewModel.isAddMode()
-                    ? const Text("Add Card")
-                    : ReactiveECardFormConsumer(builder: (context, e, child) {
-                        return Text("${viewModel.formModel.model.title}");
-                      }),
+                title: viewModel.isAddMode() ? const Text("Add Card") : null,
               ),
               body: LayoutBuilder(builder: (context, size) {
                 return SingleChildScrollView(

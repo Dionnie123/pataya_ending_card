@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:pataya_ending_card/app/app.router.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/constants/dimensions.dart';
-import 'package:pataya_ending_card/app/extensions/ecard_extension.dart';
-import 'package:pataya_ending_card/app/extensions/string_extension.dart';
 import 'package:pataya_ending_card/app/models/ecard.dart';
-import 'package:pataya_ending_card/app/ui/_core/spacer.dart';
+import 'package:pataya_ending_card/app/views/home/widgets/item.dart';
 
 import 'package:stacked/stacked.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
@@ -49,11 +46,13 @@ class HomeView extends StatelessWidget {
                     icon: Icons.sports_basketball_rounded, title: "NO CARDS"),
                 builder: (context, size) {
                   return ListView.builder(
+                    /*    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(height: 1), */
                     padding: Dimens.computedWidth(
                         screenSize: size,
                         targetWidth: 500,
-                        hPadding: 15,
-                        vPadding: 15),
+                        hPadding: 5,
+                        vPadding: 5),
                     itemCount: viewModel.cards.length,
                     itemBuilder: (context, index) {
                       final item = viewModel.cards[index];
@@ -94,67 +93,17 @@ class HomeView extends StatelessWidget {
                             }
                           },
                           child: Card(
-                            child: InkWell(
-                              onTap: () {
-                                viewModel.routingService.navigateTo(
-                                    CardSlotsViewRoute(
-                                        card: item, action: ActionType.add));
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                        child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "${item.teamOneName ?? ""} vs. ${item.teamTwoName ?? ""} "
-                                                  .toUpperCase(),
-                                            ),
-                                            hSpaceSmall,
-                                            if (item.winnerSlot() != null)
-                                              const Icon(
-                                                Icons.star_rounded,
-                                                color: Colors.orange,
-                                              )
-                                          ],
-                                        ),
-                                        if (item.title != null)
-                                          Text(
-                                              (item.title ?? "").toTitleCase()),
-                                        if (item.date != null)
-                                          Text(DateFormat(
-                                                  'EEE, MMM. d y h:mm a')
-                                              .format(
-                                                  item.date ?? DateTime.now())),
-                                      ],
-                                    )),
-                                    hSpaceRegular,
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                            "Score : ${item.teamOneScore ?? ""} ${item.teamTwoScore != null ? "- ${item.teamTwoScore}" : ""}"),
-                                        const Text("Slots   : 24/99"),
-                                        const Text("Paid    : 7/9"),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ));
+                              clipBehavior: Clip.antiAlias,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(0.0)),
+                              child: InkWell(
+                                  onTap: () {
+                                    viewModel.routingService.navigateTo(
+                                        CardSlotsViewRoute(
+                                            card: item,
+                                            action: ActionType.add));
+                                  },
+                                  child: ECardItem(item))));
                     },
                   );
                 },
