@@ -1,34 +1,32 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:pataya_ending_card/app/app.router.dart';
-import 'package:pataya_ending_card/app/bottomsheet_ui.dart';
-import 'package:pataya_ending_card/app/dialog_ui.dart';
+import 'package:pataya_ending_card/app/app.bottomsheets.dart';
+
+import 'package:pataya_ending_card/app/app.dialogs.dart';
 import 'package:pataya_ending_card/app/app.locator.dart';
-import 'package:pataya_ending_card/app/snackbar_ui.dart';
+import 'package:pataya_ending_card/app/app.router.dart';
+import 'package:pataya_ending_card/ui/common/app_colors.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked_themes/stacked_themes.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'app/constants/colors.dart';
 
 Future<void> main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   if (!kIsWeb) FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Hive.initFlutter();
-
   await setupLocator(stackedRouter: stackedRouter);
-
   await ThemeManager.initialise();
-  await setupSnackBarUI();
-  await setupDialogUI();
-  await setupBottomSheetUI();
-  runApp(const MyApp());
+  setupDialogUi();
+  setupBottomSheetUi();
+
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +36,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "Digicard",
         theme: ThemeData(
-          colorSchemeSeed: kPrimaryColor,
+          colorSchemeSeed: kcPrimaryColor,
           // useMaterial3: true,
           brightness: Brightness.dark,
           bottomSheetTheme: const BottomSheetThemeData(
@@ -47,7 +45,7 @@ class MyApp extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 // Makes all my ElevatedButton green
-                backgroundColor: kPrimaryColor),
+                backgroundColor: kcPrimaryColor),
           ),
           fontFamily: GoogleFonts.poppins().fontFamily,
           inputDecorationTheme: const InputDecorationTheme(

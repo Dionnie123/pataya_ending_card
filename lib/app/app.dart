@@ -1,13 +1,18 @@
-import 'package:pataya_ending_card/app/services/_core/ecard_service.dart';
-import 'package:pataya_ending_card/app/views/card/card_view.dart';
-import 'package:pataya_ending_card/app/views/home/home_view.dart';
-import 'package:pataya_ending_card/app/views/home/home_viewmodel.dart';
-import 'package:pataya_ending_card/app/views/settings/settings_view_model.dart';
-import 'package:pataya_ending_card/app/views/slots/card_slots_view.dart';
-import 'package:pataya_ending_card/app/views/slots/card_slots_viewmodel.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'views/card/card_viewmodel.dart';
+import 'package:pataya_ending_card/ui/views/home/home_view.dart';
+import 'package:pataya_ending_card/ui/bottom_sheets/basic/basic_sheet.dart';
+
+import 'package:pataya_ending_card/ui/views/card/card_view.dart';
+import 'package:pataya_ending_card/ui/views/card_slots/card_slots_view.dart';
+import 'package:pataya_ending_card/services/e_card_service.dart';
+import 'package:pataya_ending_card/ui/dialogs/slot/slot_dialog.dart';
+import 'package:pataya_ending_card/ui/dialogs/score/score_dialog.dart';
+import 'package:pataya_ending_card/ui/dialogs/confirm/confirm_dialog.dart';
+import 'package:pataya_ending_card/ui/dialogs/error/error_dialog.dart';
+import 'package:pataya_ending_card/ui/dialogs/basic/basic_dialog.dart';
+import 'package:pataya_ending_card/ui/dialogs/result/result_dialog.dart';
+// @stacked-import
 
 @StackedApp(
   logger: StackedLogger(),
@@ -17,30 +22,39 @@ import 'views/card/card_viewmodel.dart';
       path: '/',
       initial: true,
     ),
-    MaterialRoute(path: '/', page: CardView),
-    MaterialRoute(path: '/', page: CardSlotsView),
+    MaterialRoute(
+      page: CardView,
+      path: '/',
+    ),
+    MaterialRoute(
+      page: CardSlotsView,
+      path: '/',
+    ),
+// @stacked-route
   ],
   dependencies: [
-    /*   Presolve(
-      classType: LocalStorageService,
-      presolveUsing: LocalStorageService.getInstance,
-    ),
-
-    LazySingleton(
-      classType: ThemeService,
-      resolveUsing: ThemeService.getInstance,
-    ),*/
-    InitializableSingleton(
-      classType: ECardService,
-    ),
-    LazySingleton(classType: RouterService),
-    LazySingleton(classType: DialogService),
-    LazySingleton(classType: SnackbarService),
     LazySingleton(classType: BottomSheetService),
-    Singleton(classType: HomeViewModel),
-    Singleton(classType: SettingsViewModel),
-    Singleton(classType: CardViewModel),
-    Singleton(classType: CardSlotsViewModel),
+    LazySingleton(classType: DialogService),
+    LazySingleton(classType: RouterService),
+    InitializableSingleton(classType: ECardService),
+// @stacked-service
+  ],
+  bottomsheets: [
+    //StackedBottomsheet(classType: NoticeSheet),
+
+    StackedBottomsheet(classType: BasicSheet),
+// @stacked-bottom-sheet
+  ],
+  dialogs: [
+    // StackedDialog(classType: InfoAlertDialog),
+
+    StackedDialog(classType: SlotDialog),
+    StackedDialog(classType: ScoreDialog),
+    StackedDialog(classType: ConfirmDialog),
+    StackedDialog(classType: ErrorDialog),
+    StackedDialog(classType: BasicDialog),
+    StackedDialog(classType: ResultDialog),
+// @stacked-dialog
   ],
 )
 class App {}

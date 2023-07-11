@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 extension ColorExtension on Color {
-
   Color darken([double amount = .1]) {
     assert(amount >= 0 && amount <= 1);
 

@@ -9,14 +9,9 @@
 import 'package:stacked_services/src/bottom_sheet/bottom_sheet_service.dart';
 import 'package:stacked_services/src/dialog/dialog_service.dart';
 import 'package:stacked_services/src/navigation/router_service.dart';
-import 'package:stacked_services/src/snackbar/snackbar_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
-import 'services/_core/ecard_service.dart';
-import 'views/card/card_viewmodel.dart';
-import 'views/home/home_viewmodel.dart';
-import 'views/settings/settings_view_model.dart';
-import 'views/slots/card_slots_viewmodel.dart';
+import '../services/e_card_service.dart';
 import 'app.router.dart';
 
 final locator = StackedLocator.instance;
@@ -31,18 +26,13 @@ Future<void> setupLocator({
       environment: environment, environmentFilter: environmentFilter);
 
 // Register dependencies
+  locator.registerLazySingleton(() => BottomSheetService());
+  locator.registerLazySingleton(() => DialogService());
+  locator.registerLazySingleton(() => RouterService());
   final eCardService = ECardService();
   await eCardService.initialise();
   locator.registerSingleton(eCardService);
 
-  locator.registerLazySingleton(() => RouterService());
-  locator.registerLazySingleton(() => DialogService());
-  locator.registerLazySingleton(() => SnackbarService());
-  locator.registerLazySingleton(() => BottomSheetService());
-  locator.registerSingleton(HomeViewModel());
-  locator.registerSingleton(SettingsViewModel());
-  locator.registerSingleton(CardViewModel());
-  locator.registerSingleton(CardSlotsViewModel());
   if (stackedRouter == null) {
     throw Exception(
         'Stacked is building to use the Router (Navigator 2.0) navigation but no stackedRouter is supplied. Pass the stackedRouter to the setupLocator function in main.dart');

@@ -9,11 +9,11 @@ import 'package:flutter/material.dart' as _i6;
 import 'package:stacked/stacked.dart' as _i5;
 import 'package:stacked_services/stacked_services.dart' as _i4;
 
+import '../ui/views/card/card_view.dart' as _i2;
+import '../ui/views/card_slots/card_slots_view.dart' as _i3;
+import '../ui/views/home/home_view.dart' as _i1;
 import 'constants/action.dart' as _i8;
 import 'models/ecard.dart' as _i7;
-import 'views/card/card_view.dart' as _i2;
-import 'views/home/home_view.dart' as _i1;
-import 'views/slots/card_slots_view.dart' as _i3;
 
 final stackedRouter =
     StackedRouterWeb(navigatorKey: _i4.StackedService.navigatorKey);
@@ -31,7 +31,8 @@ class StackedRouterWeb extends _i5.RootStackRouter {
       );
     },
     CardViewRoute.name: (routeData) {
-      final args = routeData.argsAs<CardViewArgs>();
+      final args =
+          routeData.argsAs<CardViewArgs>(orElse: () => const CardViewArgs());
       return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i2.CardView(
@@ -88,8 +89,8 @@ class HomeViewRoute extends _i5.PageRouteInfo<void> {
 class CardViewRoute extends _i5.PageRouteInfo<CardViewArgs> {
   CardViewRoute({
     _i6.Key? key,
-    required _i7.ECard card,
-    required _i8.ActionType action,
+    _i7.ECard? card,
+    _i8.ActionType? action,
   }) : super(
           CardViewRoute.name,
           path: '/',
@@ -106,15 +107,15 @@ class CardViewRoute extends _i5.PageRouteInfo<CardViewArgs> {
 class CardViewArgs {
   const CardViewArgs({
     this.key,
-    required this.card,
-    required this.action,
+    this.card,
+    this.action,
   });
 
   final _i6.Key? key;
 
-  final _i7.ECard card;
+  final _i7.ECard? card;
 
-  final _i8.ActionType action;
+  final _i8.ActionType? action;
 
   @override
   String toString() {
@@ -172,8 +173,8 @@ extension RouterStateExtension on _i4.RouterService {
 
   Future<dynamic> navigateToCardView({
     _i6.Key? key,
-    required _i7.ECard card,
-    required _i8.ActionType action,
+    _i7.ECard? card,
+    _i8.ActionType? action,
     void Function(_i5.NavigationFailure)? onFailure,
   }) async {
     return navigateTo(
@@ -212,8 +213,8 @@ extension RouterStateExtension on _i4.RouterService {
 
   Future<dynamic> replaceWithCardView({
     _i6.Key? key,
-    required _i7.ECard card,
-    required _i8.ActionType action,
+    _i7.ECard? card,
+    _i8.ActionType? action,
     void Function(_i5.NavigationFailure)? onFailure,
   }) async {
     return replaceWith(
