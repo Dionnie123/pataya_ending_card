@@ -42,11 +42,11 @@ class HomeView extends StackedView<HomeViewModel> {
           emptyIndicatorWidget: const EmptyDisplay(
               icon: Icons.sports_basketball_rounded, title: "NO CARDS"),
           builder: (context, size) {
-            return ListView.builder(
-              /*    separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(height: 1), */
+            return ListView.separated(
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(height: 1),
               padding: Dimens.computedWidth(
-                  screenSize: size, targetWidth: 500, hPadding: 5, vPadding: 5),
+                  screenSize: size, targetWidth: 500, hPadding: 0, vPadding: 0),
               itemCount: viewModel.cards.length,
               itemBuilder: (context, index) {
                 final item = viewModel.cards[index];
@@ -87,6 +87,7 @@ class HomeView extends StackedView<HomeViewModel> {
                       }
                     },
                     child: Card(
+                        margin: EdgeInsetsDirectional.zero,
                         clipBehavior: Clip.antiAlias,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(0.0)),

@@ -24,7 +24,7 @@ class SlotItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
             side: BorderSide(
                 color: isSelected ? kcPrimaryColor : Colors.grey,
-                width: isSelected ? 2 : 1),
+                width: isSelected ? 2 : 0.5),
             borderRadius: BorderRadius.circular(0.0)),
         margin: EdgeInsets.zero,
         child: Container(
@@ -58,7 +58,7 @@ class SlotItem extends StatelessWidget {
                     Text(
                       "${slot.id}",
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 13),
+                          fontWeight: FontWeight.bold, fontSize: 12),
                     ),
                     hSpaceSmall,
                     if (slot.isWinner ?? false)
@@ -73,7 +73,7 @@ class SlotItem extends StatelessWidget {
                   slot.name ?? '',
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
-                  style: const TextStyle(fontSize: 12, height: 1),
+                  style: const TextStyle(fontSize: 12),
                 )
               ],
             ),

@@ -58,8 +58,8 @@ class CardSlotsView extends StackedView<CardSlotsViewModel> {
                   gridDelegate:
                       const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
                           crossAxisCount: 4,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
+                          crossAxisSpacing: 0,
+                          mainAxisSpacing: 0,
                           height: 50),
                   itemCount: viewModel.slots.length,
                   itemBuilder: (context, index) {
