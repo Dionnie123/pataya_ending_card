@@ -14,7 +14,7 @@ class ConfirmDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: dialogShape,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),

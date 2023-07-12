@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/ui/common/app_colors.dart';
+import 'package:pataya_ending_card/ui/common/ui_helpers.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ErrorDialog extends StatelessWidget {
@@ -11,7 +12,7 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      shape: dialogShape,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),

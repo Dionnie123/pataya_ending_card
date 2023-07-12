@@ -73,8 +73,7 @@ class ScoreDialog extends StatelessWidget {
           }
 
           return Dialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+              shape: dialogShape,
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),

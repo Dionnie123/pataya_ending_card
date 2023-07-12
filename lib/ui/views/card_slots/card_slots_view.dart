@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
 import 'package:pataya_ending_card/app/models/ecard.dart';
 import 'package:pataya_ending_card/ui/common/dimensions.dart';
-import 'package:pataya_ending_card/ui/common/ui_helpers.dart';
 import 'package:pataya_ending_card/ui/widgets/common/card_item/card_item.dart';
 import 'package:pataya_ending_card/ui/widgets/common/slot_item/slot_item.dart';
 import 'package:pataya_ending_card/ui/widgets/special/sliver_grid_delegate.dart';
@@ -28,7 +27,6 @@ class CardSlotsView extends StackedView<CardSlotsViewModel> {
     return ReactiveECardForm(
       form: viewModel.formModel,
       child: Scaffold(
-        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           actions: [
             IconButton(
@@ -40,7 +38,7 @@ class CardSlotsView extends StackedView<CardSlotsViewModel> {
                 onPressed: () async {
                   await viewModel.showCardForm();
                 },
-                icon: const Icon(Icons.settings_sharp)),
+                icon: const Icon(Icons.edit_document)),
           ],
         ),
         body: LayoutBuilder(builder: (context, size) {
@@ -49,12 +47,15 @@ class CardSlotsView extends StackedView<CardSlotsViewModel> {
                 screenSize: size, targetWidth: 500, hPadding: 0, vPadding: 0),
             child: Column(
               children: [
-                Card(margin: EdgeInsets.zero, child: CardItem(card)),
-                vSpaceRegular,
+                Card(
+                    elevation: 0,
+                    margin: EdgeInsets.zero,
+                    child: CardItem(viewModel.formModel.model)),
+                const SizedBox(height: 8),
                 GridView.builder(
                   shrinkWrap: true,
                   physics: const ScrollPhysics(),
-                  padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+                  padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
                   gridDelegate:
                       const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
                           crossAxisCount: 4,

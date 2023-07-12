@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:pataya_ending_card/app/extensions/ecard_extension.dart';
 import 'package:pataya_ending_card/app/extensions/string_extension.dart';
 import 'package:pataya_ending_card/app/models/ecard.dart';
+import 'package:pataya_ending_card/ui/common/app_colors.dart';
 import 'package:pataya_ending_card/ui/common/ui_helpers.dart';
 
 class CardItem extends StatelessWidget {
@@ -38,22 +41,58 @@ class CardItem extends StatelessWidget {
           vSpaceSmall,
           if (card.title != null) Text((card.title ?? "").toTitleCase()),
           vSpaceSmall,
-          /*    if (card.date != null)
+          if (card.date != null)
             Text(
                 DateFormat('EEE, MMM. d y h:mm a')
                     .format(card.date ?? DateTime.now()),
-                style: const TextStyle(overflow: TextOverflow.ellipsis)), */
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
+                style: const TextStyle(overflow: TextOverflow.ellipsis)),
+          vSpaceSmall,
+          Wrap(
+            spacing: 8.0,
+            runSpacing: 8.0,
             children: [
-              Text(
-                  "SCORE  : ${card.teamOneScore ?? ""} ${card.teamTwoScore != null ? "- ${card.teamTwoScore}" : ""}"),
-              vSpaceSmall,
-              const Text("SLOTS   : 24/99"),
-              vSpaceSmall,
-              const Text("PAID    : 7/9"),
+              if (card.teamOneScore != null && card.teamTwoScore != null)
+                Container(
+                  decoration: BoxDecoration(
+                      color: kcPrimaryColor.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(5)),
+                  padding: const EdgeInsets.all(8),
+                  child: Text(
+                      "Score : ${card.teamOneScore ?? ""} ${card.teamTwoScore != null ? "- ${card.teamTwoScore}" : ""}"),
+                ),
+              if (card.countOccupiedSlots() > 0)
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      color: kcPrimaryColor.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Text("Slots: ${card.countOccupiedSlots()}/99"),
+                ),
+              if (card.countOccupiedPaidSlots() > 0)
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      color: kcPrimaryColor.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Text(
+                      "Paid: ${card.countOccupiedPaidSlots()}/${card.countOccupiedSlots()}"),
+                ),
+              if (card.betAmount != null)
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      color: kcPrimaryColor.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Text("Bet: ${card.betAmount}"),
+                ),
+              if (card.prize != null)
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                      color: kcPrimaryColor.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(5)),
+                  child: Text("Prize: ${card.prize}"),
+                ),
             ],
           )
         ],

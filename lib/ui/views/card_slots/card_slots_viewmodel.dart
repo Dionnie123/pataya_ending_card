@@ -94,10 +94,10 @@ class CardSlotsViewModel extends ReactiveViewModel {
     }
   }
 
-  updateSlot(Slot? slot, ActionType action) {
+  updateSlot(Slot? slot, ActionType action) async {
     selectedSlotId = slot?.id;
 
-    dialogService.showCustomDialog(
+    await dialogService.showCustomDialog(
       takesInput: true,
       variant: DialogType.slot,
       barrierDismissible: true,
@@ -117,10 +117,12 @@ class CardSlotsViewModel extends ReactiveViewModel {
             formModel.addSlotListItem(slot);
           }
         }
-        notifyListeners();
+        formModel.form.markAsDirty();
+
         await updateCard();
       }
     });
+    notifyListeners();
   }
 
   updateCard() async {

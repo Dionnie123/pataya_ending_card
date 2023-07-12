@@ -13,6 +13,24 @@ class SlotItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color? marker() {
+      Color x = Colors.transparent;
+      if (slot.name != null && slot.isPaid == true && slot.isWinner == true) {
+        x = Colors.orange.withOpacity(0.5);
+      }
+      if (slot.name != null && slot.isPaid == false && slot.isWinner == true) {
+        x = Colors.grey.withOpacity(0.5);
+      }
+      if (slot.name != null && slot.isPaid == true && slot.isWinner == false) {
+        x = Colors.blue.withOpacity(0.5);
+      }
+      if (slot.name != null && slot.isPaid == false && slot.isWinner == false) {
+        x = Colors.grey.withOpacity(0.5);
+      }
+
+      return x;
+    }
+
     return InkWell(
       onTap: () {
         HapticFeedback.mediumImpact();
@@ -31,21 +49,7 @@ class SlotItem extends StatelessWidget {
           //   height: 50,
           width: 150,
           decoration: BoxDecoration(
-            color: slot.name != null
-                ? slot.isPaid ?? false
-                    ? Colors.blue.withOpacity(0.6)
-                    : Colors.transparent
-                : null,
-            gradient: slot.isWinner ?? false
-                ? const LinearGradient(
-                    colors: [
-                      Colors.orangeAccent,
-                      Colors.orange,
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  )
-                : null,
+            color: marker(),
           ),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(5, 3, 5, 3),
@@ -62,9 +66,10 @@ class SlotItem extends StatelessWidget {
                     ),
                     hSpaceSmall,
                     if (slot.isWinner ?? false)
-                      const Icon(
+                      Icon(
                         Icons.star_rounded,
-                        color: Colors.orange,
+                        color:
+                            slot.isPaid == true ? Colors.orange : Colors.grey,
                       ),
                   ],
                 ),

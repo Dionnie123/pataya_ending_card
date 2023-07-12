@@ -109,3 +109,6 @@ bool isDesktop(BuildContext context) {
   final screenWidth = MediaQuery.of(context).size.width;
   return screenWidth > 1062 ? true : false;
 }
+
+RoundedRectangleBorder dialogShape =
+    RoundedRectangleBorder(borderRadius: BorderRadius.circular(5));

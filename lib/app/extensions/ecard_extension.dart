@@ -3,6 +3,16 @@ import 'package:pataya_ending_card/app/models/ecard.dart';
 import 'package:pataya_ending_card/app/models/slot.dart';
 
 extension SlotExtension on ECard {
+  int countOccupiedSlots() {
+    return slotList.where((element) => element.name != null).length;
+  }
+
+  int countOccupiedPaidSlots() {
+    return slotList
+        .where((element) => element.name != null && element.isPaid == true)
+        .length;
+  }
+
   String? winningSlotId() {
     int? t1 = teamOneScore;
     int? t2 = teamTwoScore;
