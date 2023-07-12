@@ -26,7 +26,7 @@ extension SlotExtension on ECard {
 
   Slot? winnerSlot() {
     for (var i = 0; i < slotList.length; i++) {
-      if (slotList[i].id == winningSlotId()) {
+      if (slotList[i].id == winningSlotId() && slotList[i].isPaid == true) {
         return slotList[i];
       }
     }

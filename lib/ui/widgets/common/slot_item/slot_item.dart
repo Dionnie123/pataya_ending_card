@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pataya_ending_card/app/models/slot.dart';
 import 'package:pataya_ending_card/ui/common/app_colors.dart';
-import 'package:pataya_ending_card/ui/common/ui_helpers.dart';
 
 class SlotItem extends StatelessWidget {
   final bool isSelected;
@@ -64,13 +63,6 @@ class SlotItem extends StatelessWidget {
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 12),
                     ),
-                    hSpaceSmall,
-                    if (slot.isWinner ?? false)
-                      Icon(
-                        Icons.star_rounded,
-                        color:
-                            slot.isPaid == true ? Colors.orange : Colors.grey,
-                      ),
                   ],
                 ),
                 const SizedBox(width: 3),

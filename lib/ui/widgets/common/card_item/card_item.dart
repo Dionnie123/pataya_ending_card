@@ -93,6 +93,15 @@ class CardItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5)),
                   child: Text("Prize: ${card.prize}"),
                 ),
+              if (card.teamOneScore != null && card.teamTwoScore != null)
+                Container(
+                  decoration: BoxDecoration(
+                      color: kcPrimaryColor.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(5)),
+                  padding: const EdgeInsets.all(8),
+                  child: Text(
+                      "Result : ${card.winningSlotId()} ${card.winnerSlot() != null ? '(${card.winnerSlot()?.name})' : ''}"),
+                ),
             ],
           )
         ],
