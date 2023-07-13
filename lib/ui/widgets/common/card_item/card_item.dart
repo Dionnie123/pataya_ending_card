@@ -56,13 +56,15 @@ class CardItem extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: kcPrimaryColor.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(5)),
-                  padding: const EdgeInsets.all(8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   child: Text(
                       "Score : ${card.teamOneScore ?? ""} ${card.teamTwoScore != null ? "- ${card.teamTwoScore}" : ""}"),
                 ),
               if (card.countOccupiedSlots() > 0)
                 Container(
-                  padding: const EdgeInsets.all(8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                       color: kcPrimaryColor.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(5)),
@@ -70,7 +72,8 @@ class CardItem extends StatelessWidget {
                 ),
               if (card.countOccupiedPaidSlots() > 0)
                 Container(
-                  padding: const EdgeInsets.all(8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                       color: kcPrimaryColor.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(5)),
@@ -79,7 +82,8 @@ class CardItem extends StatelessWidget {
                 ),
               if (card.betAmount != null)
                 Container(
-                  padding: const EdgeInsets.all(8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                       color: kcPrimaryColor.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(5)),
@@ -87,7 +91,8 @@ class CardItem extends StatelessWidget {
                 ),
               if (card.prize != null)
                 Container(
-                  padding: const EdgeInsets.all(8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                       color: kcPrimaryColor.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(5)),
@@ -98,7 +103,8 @@ class CardItem extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: kcPrimaryColor.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(5)),
-                  padding: const EdgeInsets.all(8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   child: Text(
                       "Result : ${card.winningSlotId()} ${card.winnerSlot() != null ? '(${card.winnerSlot()?.name})' : ''}"),
                 ),

@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pataya_ending_card/app/app.bottomsheets.dart';
 
@@ -37,7 +38,7 @@ class MainApp extends StatelessWidget {
         theme: ThemeData(
           colorSchemeSeed: kcPrimaryColor,
           // useMaterial3: true,
-          brightness: Brightness.dark,
+          // brightness: Brightness.dark,
           bottomSheetTheme: const BottomSheetThemeData(
               elevation: 0, backgroundColor: Colors.transparent),
           elevatedButtonTheme: ElevatedButtonThemeData(
@@ -46,7 +47,7 @@ class MainApp extends StatelessWidget {
                 // Makes all my ElevatedButton green
                 backgroundColor: kcPrimaryColor),
           ),
-          //   fontFamily: GoogleFonts.nunito().fontFamily,
+          fontFamily: GoogleFonts.poppins().fontFamily,
           inputDecorationTheme: const InputDecorationTheme(
             /* contentPadding: EdgeInsets.all(12), */
             isDense: true,
