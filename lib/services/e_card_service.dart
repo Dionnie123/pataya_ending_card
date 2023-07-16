@@ -5,7 +5,7 @@ import 'package:stacked/stacked.dart';
 import 'package:uuid/uuid.dart';
 
 class ECardService with ListenableServiceMixin, Initialisable {
-  static ECardService? _instance;
+  ECardService? _instance;
   static late Box _box;
 
   @override
