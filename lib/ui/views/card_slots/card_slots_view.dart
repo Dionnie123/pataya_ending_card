@@ -42,40 +42,46 @@ class CardSlotsView extends StackedView<CardSlotsViewModel> {
           ],
         ),
         body: LayoutBuilder(builder: (context, size) {
-          return SingleChildScrollView(
-            padding: Dimens.computedWidth(
-                screenSize: size, targetWidth: 500, hPadding: 0, vPadding: 0),
-            child: Card(
-              margin: EdgeInsets.zero,
-              child: Column(
-                children: [
-                  CardItem(viewModel.formModel.model),
-                  const SizedBox(height: 8),
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: const ScrollPhysics(),
-                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
-                            crossAxisCount: 4,
-                            crossAxisSpacing: 0,
-                            mainAxisSpacing: 0,
-                            height: 50),
-                    itemCount: viewModel.slots.length,
-                    itemBuilder: (context, index) {
-                      final item = viewModel.slots[index];
-                      return SlotItem(item,
-                          isSelected: viewModel.selectedSlotId == item.id,
-                          onTap: (slot) {
-                        viewModel.updateSlot(
-                            slot,
-                            (item.name?.isNotEmpty ?? false)
-                                ? ActionType.update
-                                : ActionType.add);
-                      });
-                    },
-                  ),
-                ],
+          return GestureDetector(
+            onVerticalDragDown: (details) {
+              viewModel.selectedSlotId = null;
+            },
+            onTap: () {},
+            child: SingleChildScrollView(
+              padding: Dimens.computedWidth(
+                  screenSize: size, targetWidth: 500, hPadding: 0, vPadding: 0),
+              child: Card(
+                margin: EdgeInsets.zero,
+                child: Column(
+                  children: [
+                    CardItem(viewModel.formModel.model),
+                    const SizedBox(height: 8),
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: const ScrollPhysics(),
+                      padding: EdgeInsets.zero,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
+                              crossAxisCount: 4,
+                              crossAxisSpacing: 0,
+                              mainAxisSpacing: 0,
+                              height: 50),
+                      itemCount: viewModel.slots.length,
+                      itemBuilder: (context, index) {
+                        final item = viewModel.slots[index];
+                        return SlotItem(item,
+                            isSelected: viewModel.selectedSlotId == item.id,
+                            onTap: (slot) {
+                          viewModel.updateSlot(
+                              slot,
+                              (item.name?.isNotEmpty ?? false)
+                                  ? ActionType.update
+                                  : ActionType.add);
+                        });
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -95,6 +101,7 @@ class CardSlotsView extends StackedView<CardSlotsViewModel> {
     viewModel.model = card;
     viewModel.action = action;
     viewModel.readyForm();
+
     super.onViewModelReady(viewModel);
   }
 

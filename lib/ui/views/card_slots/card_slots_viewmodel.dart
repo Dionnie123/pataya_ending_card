@@ -56,7 +56,12 @@ class CardSlotsViewModel extends ReactiveViewModel {
 
   List<Slot> get slots => formModel.model.generateSlots();
 
-  String? selectedSlotId;
+  String? _selectedSlotId;
+  get selectedSlotId => _selectedSlotId;
+  set selectedSlotId(v) {
+    _selectedSlotId = v;
+    notifyListeners();
+  }
 
   showCardForm() async {
     final res = await routingService.navigateTo(
