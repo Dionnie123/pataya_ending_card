@@ -109,13 +109,21 @@ class CardForm extends StatelessWidget {
         vSpaceRegular,
         gameTitle(),
         vSpaceRegular,
-        teamOneName(),
+        Row(
+          children: [
+            Expanded(child: teamOneName()),
+            hSpaceRegular,
+            Expanded(child: teamTwoName()),
+          ],
+        ),
         vSpaceRegular,
-        teamTwoName(),
-        vSpaceRegular,
-        betAmount(),
-        vSpaceRegular,
-        winAmount(),
+        Row(
+          children: [
+            Expanded(child: betAmount()),
+            hSpaceRegular,
+            Expanded(child: winAmount()),
+          ],
+        ),
         vSpaceRegular,
         remarks(),
         vSpaceRegular,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pataya_ending_card/app/extensions/string_extension.dart';
 import 'package:pataya_ending_card/app/models/slot.dart';
 import 'package:pataya_ending_card/ui/common/app_colors.dart';
 
@@ -36,45 +37,49 @@ class SlotItem extends StatelessWidget {
         onTap(slot);
       },
       child: Card(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
+        color: marker(),
         elevation: 0,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
         shape: RoundedRectangleBorder(
             side: BorderSide(
                 color: isSelected ? kcPrimaryColor : Colors.grey,
                 width: isSelected ? 2 : 0.5),
             borderRadius: BorderRadius.circular(0.0)),
         margin: EdgeInsets.zero,
-        child: Container(
-          //   height: 50,
-          width: 150,
-          decoration: BoxDecoration(
-            color: marker(),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(5, 3, 5, 3),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
               children: [
-                Row(
-                  children: [
-                    Text(
+                Container(
+                  color: kcPrimaryColor,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                    child: Text(
                       "${slot.id}",
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 12),
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12),
                     ),
-                  ],
+                  ),
                 ),
-                const SizedBox(width: 3),
-                Text(
-                  slot.name ?? '',
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
-                  style: const TextStyle(fontSize: 12),
-                )
               ],
             ),
-          ),
+            const SizedBox(width: 3),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text(
+                slot.name?.toTitleCase() ?? '',
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: const TextStyle(
+                    fontSize: 14, height: 1.2, fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
         ),
       ),
     );

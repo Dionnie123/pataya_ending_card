@@ -23,7 +23,7 @@ class HomeView extends StackedView<HomeViewModel> {
   ) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("CARDS"),
+          title: const Text("PATAYA ENDING APP"),
           actions: [
             IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
           ],

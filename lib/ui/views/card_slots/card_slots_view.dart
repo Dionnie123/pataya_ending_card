@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pataya_ending_card/app/constants/action.dart';
+import 'package:pataya_ending_card/app/extensions/string_extension.dart';
 import 'package:pataya_ending_card/app/models/ecard.dart';
 import 'package:pataya_ending_card/ui/common/dimensions.dart';
-import 'package:pataya_ending_card/ui/widgets/common/card_item/card_item.dart';
+import 'package:pataya_ending_card/ui/common/ui_helpers.dart';
 import 'package:pataya_ending_card/ui/widgets/common/slot_item/slot_item.dart';
 import 'package:pataya_ending_card/ui/widgets/special/sliver_grid_delegate.dart';
 import 'package:stacked/stacked.dart';
@@ -50,13 +51,130 @@ class CardSlotsView extends StackedView<CardSlotsViewModel> {
             child: SingleChildScrollView(
               padding: Dimens.computedWidth(
                   screenSize: size, targetWidth: 500, hPadding: 0, vPadding: 0),
-              child: Card(
-                margin: EdgeInsets.zero,
-                child: Column(
-                  children: [
-                    CardItem(viewModel.formModel.model),
-                    const SizedBox(height: 8),
-                    GridView.builder(
+              child: Column(
+                children: [
+                  vSpaceSmall,
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey, width: 0.5)),
+                    child: Center(
+                        child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "${card.teamOneScore} ".toUpperCase(),
+                                  textAlign: TextAlign.end,
+                                  style: const TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Text(
+                                "   -   ".toUpperCase(),
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  "${card.teamTwoScore}".toUpperCase(),
+                                  style: const TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "${card.teamOneName} ".toUpperCase(),
+                                  textAlign: TextAlign.end,
+                                  style: const TextStyle(
+                                      height: 1.1,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              Text(
+                                "  vs  ".toUpperCase(),
+                                style: const TextStyle(
+                                    height: 1.1,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  "${card.teamTwoName}".toUpperCase(),
+                                  style: const TextStyle(
+                                      height: 1.1,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ],
+                          ),
+                          if (card.title != null)
+                            Text((card.title ?? "").toTitleCase()),
+                          vSpaceSmall,
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 4,
+                                runSpacing: 4,
+                                children: [
+                                  Icon(Icons.circle_rounded,
+                                      color: Colors.blue),
+                                  Text("Paid: 1")
+                                ],
+                              ),
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 4,
+                                runSpacing: 4,
+                                children: [
+                                  Icon(Icons.circle_rounded,
+                                      color: Colors.grey),
+                                  Text("Unpaid: 2")
+                                ],
+                              ),
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 4,
+                                runSpacing: 4,
+                                children: [
+                                  Icon(Icons.circle_rounded, color: Colors.red),
+                                  Text("Slots left: ")
+                                ],
+                              ),
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 4,
+                                runSpacing: 4,
+                                children: [
+                                  Icon(Icons.circle_rounded,
+                                      color: Colors.orangeAccent),
+                                  Text("Winner: ")
+                                ],
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    )),
+                  ),
+                  vSpaceSmall,
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey, width: 0.5)),
+                    child: GridView.builder(
                       shrinkWrap: true,
                       physics: const ScrollPhysics(),
                       padding: EdgeInsets.zero,
@@ -65,7 +183,7 @@ class CardSlotsView extends StackedView<CardSlotsViewModel> {
                               crossAxisCount: 4,
                               crossAxisSpacing: 0,
                               mainAxisSpacing: 0,
-                              height: 50),
+                              height: 64),
                       itemCount: viewModel.slots.length,
                       itemBuilder: (context, index) {
                         final item = viewModel.slots[index];
@@ -80,8 +198,8 @@ class CardSlotsView extends StackedView<CardSlotsViewModel> {
                         });
                       },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );

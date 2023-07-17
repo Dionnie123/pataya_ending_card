@@ -135,8 +135,8 @@ class EzButton extends StatelessWidget {
 
     return ConstrainedBox(
       constraints: const BoxConstraints(
-        minHeight: 44,
-        maxHeight: 44,
+        minHeight: 50,
+        maxHeight: 50,
         minWidth: 120,
         maxWidth: double.infinity,
       ),

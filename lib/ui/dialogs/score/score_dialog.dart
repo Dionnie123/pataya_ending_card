@@ -95,9 +95,13 @@ class ScoreDialog extends StatelessWidget {
                           ),
                         ),
                         vSpaceRegular,
-                        teamOneScore(),
-                        vSpaceRegular,
-                        teamTwoScore(),
+                        Row(
+                          children: [
+                            Expanded(child: teamOneScore()),
+                            hSpaceRegular,
+                            Expanded(child: teamTwoScore()),
+                          ],
+                        ),
                         vSpaceRegular,
                         submit(),
                       ],

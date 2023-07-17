@@ -29,6 +29,18 @@ class CardView extends StackedView<CardViewModel> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: viewModel.isAddMode() ? const Text("Add Card") : null,
+          actions: [
+            if (viewModel.action == ActionType.add ||
+                viewModel.formModel.form.dirty)
+              TextButton(
+                  onPressed: () async {
+                    await viewModel.create();
+                  },
+                  child: const Text(
+                    "SAVE",
+                    style: TextStyle(color: Colors.white),
+                  ))
+          ],
         ),
         body: LayoutBuilder(builder: (context, size) {
           return SingleChildScrollView(
