@@ -163,6 +163,16 @@ class CardSlotsView extends StackedView<CardSlotsViewModel> {
                                       color: Colors.orangeAccent),
                                   Text("Winner: ")
                                 ],
+                              ),
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                spacing: 4,
+                                runSpacing: 4,
+                                children: [
+                                  Icon(Icons.money_rounded,
+                                      color: Colors.green),
+                                  Text("Bet: 100 ")
+                                ],
                               )
                             ],
                           )
